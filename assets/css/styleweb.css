@@ -1,0 +1,254 @@
+@import url(http://fonts.googleapis.com/css?family=Permanent+Marker|Allerta+Stencil|Slackey|Oxygen|Unica+One);
+
+body {font-size: 14px; font-weight:normal; line-height: 1.8; font-family: 'Oxygen',Arial,Helvetica; background-color:#111;color: #fff;}
+
+h1,h2,h3,h4,h5,h6{ font-weight:normal;padding: 0;margin: 0;color: #fff;}
+h1,h2,h3{ font-family: 'Allerta Stencil',Arial,Helvetica;text-transform: uppercase;}
+h4,h5,h6{ font-family: 'Unica One',Arial,Helvetica;color: #fff;}
+
+
+h3{font-size: 1.55em; margin-top: 1.56em; margin-bottom: 1.25em; color: #fff;}
+h3 span{font-size: 1.5em;}
+h4{font-size: 1.5em; margin-bottom:1.25em; line-height: 1.6;}
+h5{font-size: 1.4em;}
+
+small{color: #777;font-size: 0.8em;}
+p{margin-bottom: 1.56em;}
+blockquote {padding: 0 1.25em; margin: 0 0 1.25em; border-left: 5px solid #aaa; font-size: 0.87em; font-style: italic; font-family: georgia;}
+
+.spacer{padding:2em 0 0 0;}
+.center{text-align: center;}
+.thumbnail{ background-color:#fff;}
+
+.overlay{z-index: 100;position: relative;}
+.blockblack{background:rgba(0,0,0,0.75); border-radius: 10px; padding: 1.55em; padding-top: 0; }
+
+
+/*color*/
+.bgcolor{background-color: #f2ab00;} /* amarillo */
+.textcolor{color: #f2ab00;}
+a {color:#f2ab00; text-decoration:none}
+a:hover{color:#fff;text-decoration:none}
+/*color*/
+
+/* ********* */
+/* APP MOVIL */
+/* ********* */
+
+/* header fijo */
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 80px;
+    width: 100%;
+    border-bottom: solid 1px #666;
+    padding: 10px;
+    background-color:#111;
+}
+.header-50 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 50px;
+    width: 100%;
+    border-bottom: solid 1px #666;
+    padding: 10px;
+    background-color:#111;
+}
+/*.guiaeventos {
+    position: absolute;
+    top: 80px;
+    bottom: 0;
+    width: 100%;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+.guiaeventos.eventoslocal {
+    position: relative;
+    top: 0;
+}*/
+.wrapper-absolute-80 {
+    position: absolute;
+    top: 80px;
+    bottom: 0;
+    width: 100%;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+.wrapper-absolute-50 {
+    position: absolute;
+    top: 50px;
+    bottom: 0;
+    width: 100%;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* fin header fijo */
+
+/* estilos header */
+.head_sup {
+    text-align: center;
+}
+.head_sup img {
+    vertical-align: bottom;
+    margin-right: 10px;
+}
+.head_sup h1 {
+    display: inline;
+    font-size:1.4em;
+}
+.head_sup .glyphicon {
+    margin-right: 8px;
+    margin-left: 8px;
+    font-size: 1.2em;
+}
+.head_sup .fa {
+    margin-right: 8px;
+    margin-left: 8px;
+    font-size: 1.4em;
+}
+
+.menu_drop {
+    display: inline;
+    text-align: right;
+}
+a.menu_salir {
+    display: inline;
+}
+
+.header .head_inf {
+    padding-top: 5px;
+}
+.selec_drop {
+    display: inline;
+    margin: 3px;
+    margin-left: 25px;
+}
+
+.dropdown-menu {
+    background-color: #111;
+    border: 1px solid #222;
+}
+.dropdown-menu .divider {
+    background-color: #222;
+}
+.dropdown-menu > li > a {
+    color: #f2ab00;
+    font-size: 1.2em;
+    line-height: 2;
+}
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  color: #f2ab00;
+  background-color: #333;
+}
+/* fin estilos header */
+
+/* ************* */
+/* FIN APP MOVIL */
+/* ************* */
+
+
+
+/* home --- en INDEX */
+.homeinfo { padding: 7.5em 0 1.25em 0;}
+.fronttext h1 {padding: 0.1em; font-size:2.3em; line-height:1; display: inline-block; }
+.fronttext p {margin:0; margin-top: 1em; background-color: rgba(0,0,0,0.7);display: inline-block;padding: 0.6em;}
+.homeinfo .publi {position: relative;}
+/* home  --- en INDEX */
+
+
+/* guiaeventos --- en INDEX (proximos eventos), en AGENDA y en otros eventos EVENTO */
+.guiaeventos h4 {border-bottom: 1px solid;}
+.guiaeventos .cuadro {background-color: #222; margin: 0 0.1em 0.5em;}
+.guiaeventos .cuadro img {margin-bottom: 0.9em;}
+.guiaeventos .cuadro h5 {margin: 0.5em 0;}
+.guiaeventos .cuadro p {margin: 0.6em 0; font-size: 1em; line-height: 1.2;}
+.guiaeventos .cuadro .date {text-align: center; color: #aaa; padding: 0.5em 0; margin-bottom: 5px; background-color: #111; border: 1px solid #222;}
+.guiaeventos .cuadro .date span { display: block; font-size: 1.25em; line-height: 1.2;}
+.guiaeventos .cuadro .date span.dia { font-size: 1.1em; padding-bottom: 0.5em; }
+.guiaeventos .cuadro .date b {font-size: 1.3em;}
+.guiaeventos .cuadro .date span.hora {font-size: 1.2em; line-height: 1.8;}
+.guiaeventos .cuadro .titulo h5 {display: inline;}
+.guiaeventos .cuadro .menu {font-size: 2em; text-align: right;}
+.guiaeventos .cuadro .menu .eliminar_ev {margin-left: 15px;}
+/*.guiaeventos .cuadro .date b{display: block;font-size: 1.5em;}
+.guiaeventos .cuadro .date span{font-size: 1.25em;}*/
+/* guiaeventos --- en INDEX, AGENDA y EVENTO */
+
+
+/* contacto --- en INDEX */
+.contactform {margin-bottom: 1.5em;}
+.contactform textarea, .contactform input {width: 100%; padding:2%; border:1px solid #ccc; margin-bottom: 1.2em; border-radius: 5px; outline: none;}
+.contactform button{border:none; width: 100%; padding: 0.3em 0; font-size: 1.5em;}
+.contactform iframe{float: left;}
+/* contacto --- en INDEX */
+
+
+/* evento-detalle --- en EVENTO */
+.evento-detalle .cuadro {background-color: #222; }
+.evento-detalle .cuadro img {margin-bottom: 1em;}
+.evento-detalle .cuadro h4 {color: #f2ab00; font-size: 2em; margin-bottom: 0.5em;}
+.evento-detalle .cuadro p {margin: 0.6em 0; font-size: 1.12em; line-height: 1; }
+.evento-detalle .cuadro .datos-evento p {text-align: right;}
+.evento-detalle .cuadro .descr-evento { margin: 1.2em 0; text-align: justify; font-size: 0.9em;}
+.evento-detalle .cuadro .descr-evento p {font-size: 1.1em; line-height: 1.4; text-align: justify;}
+.evento-detalle .cuadro .date {text-align: center; color: #aaa; padding: 0.5em 0; background-color: #111; margin-bottom: 1.5em;}
+.evento-detalle .cuadro .date span { font-size: 1.25em; line-height: 1.2;}
+.evento-detalle .cuadro .date span.dia { font-size: 1.25em; padding-bottom: 0.5em; }
+.evento-detalle .cuadro .date b {font-size: 1.5em;}
+.evento-detalle .cuadro .date span.hora {/*display: block;*/ font-size: 1.5em; line-height: 1.8;}
+.evento-detalle .cuadro .local { font-size: 1.5em; font-weight: bold; }
+.evento-detalle .cuadro .ciudad { font-size: 1.5em; margin-left: 1em;}
+.evento-detalle .cuadro .local_link .local { font-size: 1.2em; font-weight: bold; color: #f2ab00;}
+.evento-detalle .cuadro .local_link .glyphicon { font-size: 0.8em;}
+.evento-detalle .cuadro p.direc { font-size: 0.9em;}
+/*
+.evento-detalle .cuadro .local { font-size: 1.5em; font-weight: bold; float:left;}
+.evento-detalle .cuadro .ciudad { font-size: 1.5em; float: right;}
+*/
+.evento-detalle .cuadro h5 { margin-bottom: 0.8em; color: #f2ab00;}
+.mapa-google { width: 100%; height: 18em; border:0; margin: 0 auto 1.5em;}
+/* evento-detalle --- en EVENTO */
+
+.lista-locales img {margin-top: 8px;}
+/* lista eventos del LOCAL */
+.eventoslocal h2 {
+    margin: 8px 5px;
+    margin-top: 20px;
+    font-size: 1.4em;
+}
+/* lista eventos del LOCAL */
+
+
+
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+/* para móviles muy peques */
+@media (max-width: 374px) {
+    .head_sup h1 {
+        font-size:1.1em;
+    }
+    
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    /*body {font-size: 14px;}*/
+    .fronttext h1 {font-size:3em;}
+    .evento-detalle .cuadro .date span.hora {display:inline}
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    body {font-size: 16px;}
+    
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    
+}

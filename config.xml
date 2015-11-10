@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.phonegap.pellacrud" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>CRUD Pella</name>
+    <description>
+        App
+    </description>
+    <author email="support@phonegap.com" href="http://phonegap.com">
+        Mepwebs
+    </author>
+    <content src="index.html" />
+    
+    <preference name="phonegap-version" value="cli-5.2.0" />
+    
+<!--    <preference name="useBrowserHistory" value="true"/>-->
+    <preference name="permissions" value="none" />
+    <preference name="orientation" value="default" />
+    <preference name="target-device" value="universal" />
+    <preference name="fullscreen" value="true" />
+    <preference name="webviewbounce" value="true" />
+    <preference name="prerendered-icon" value="true" />
+    <preference name="stay-in-webview" value="false" />
+    <preference name="ios-statusbarstyle" value="black-opaque" />
+    <preference name="detect-data-types" value="true" />
+    <preference name="exit-on-suspend" value="false" />
+    
+
+    <preference name="disable-cursor" value="false" />
+    <preference name="android-minSdkVersion" value="10" />
+    <preference name="android-installLocation" value="auto" />
+    
+    <gap:plugin name="org.apache.cordova.console" />
+    <gap:plugin name="org.apache.cordova.device" />
+    <gap:plugin name="org.apache.cordova.dialogs" />
+    <gap:plugin name="org.apache.cordova.globalization" />
+    
+    <gap:plugin name="org.apache.cordova.splashscreen" source="npm" />
+    <preference name="SplashScreen" value="splash" />
+    <preference name="SplashScreenDelay" value="5000" />
+    <preference name="ShowSplashScreenSpinner" value="false"/>
+    <preference name="AutoHideSplashScreen" value="false" />
+    <gap:splash src="splash.png" />
+    
+    <!--<gap:plugin name="org.apache.cordova.inappbrowser" /> -->
+    
+    
+    <!--    Compartir en RRSS   -->
+    <gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />
+
+    
+    <!--    WhiteList   -->
+    <gap:plugin name="cordova-plugin-whitelist" source="npm" />
+    <allow-navigation href="*" />
+    <access origin="*" />
+    <!-- Permitir whatsapp -->
+    <allow-intent href="whatsapp:*" />
+    <access origin="whatsapp:*" launch-external="yes" />    
+    
+    <!--
+    <access origin="*" />
+    <plugin name="cordova-plugin-whitelist" version="1" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" /> 
+    -->
+    
+    
+    <icon src="icon.png" />
+    
+    <platform name="android">
+        <allow-intent href="market:*" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
+</widget>
