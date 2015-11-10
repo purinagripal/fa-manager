@@ -185,8 +185,17 @@
                 navigator.notification.alert(
                     message,    // message
                     null,       // callback
-                    "Workshop", // title
+                    "Pella de Ocio", // title
                     'OK'        // buttonName
+                );
+            };
+            
+             window.confirm = function (message) {
+                navigator.notification.confirm(
+                    message,    // message
+                    null,       // callback
+                    "Pella de Ocio", // title
+                    ['Sí', 'No']        // buttonName
                 );
             };
         }

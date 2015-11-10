@@ -6,6 +6,7 @@ var HomeView = Backbone.View.extend({
         this.ciudad = 0;
         
         this.collection.on("reset", this.render, this);
+        this.collection.on("remove", this.render, this);
         
     },
 
@@ -93,21 +94,11 @@ var HomeView = Backbone.View.extend({
     eliminar_evento: function (event) {        
         var id_evento = $(event.currentTarget).attr('data-id'); 
         
-        var eventoborrar = this.collection.get(id_evento);
-        //var eventoborrar = new Evento({id_evento:id_evento}); // Creamos una instancia inicializando el ID del objeto que queremos recuperar
+        if( confirm("Se eliminará el evento") ) {
+            var eventoborrar = this.collection.get(id_evento);
+            eventoborrar.destroy();
+        }       
         
-        console.log("evento borrar");
-        console.log( eventoborrar );
-        
-        console.log("collection en homeview");
-        console.log( this.collection );
-        
-        //this.collection.add(eventoborrar); // Añadimos la instancia a la colección para que Backbone sepa la url base de la colección
-        
-        eventoborrar.destroy({reset: true});
-        this.render();
-        
-        console.log("eliminar evento "+id_evento);
     },
 
 
