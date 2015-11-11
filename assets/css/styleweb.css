@@ -99,6 +99,14 @@ a:hover{color:#fff;text-decoration:none}
     display: inline;
     font-size:1.4em;
 }
+.head_sup .icon {
+    margin: 0;
+    margin-right: 8px;
+    margin-left: 8px;
+    font-size: 1.5em;
+}
+
+/*
 .head_sup .glyphicon {
     margin-right: 8px;
     margin-left: 8px;
@@ -109,6 +117,7 @@ a:hover{color:#fff;text-decoration:none}
     margin-left: 8px;
     font-size: 1.4em;
 }
+*/
 
 .menu_drop {
     display: inline;
@@ -119,7 +128,7 @@ a.menu_salir {
 }
 
 .header .head_inf {
-    padding-top: 5px;
+/*    padding-top: 5px;*/
 }
 .selec_drop {
     display: inline;
@@ -231,6 +240,13 @@ a.menu_salir {
 @media (max-width: 374px) {
     .head_sup h1 {
         font-size:1.1em;
+    }
+    
+    .head_sup .icon {
+        margin: 0;
+        margin-right: 8px;
+        margin-left: 8px;
+        font-size: 1.3em;
     }
     
 }
