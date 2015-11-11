@@ -190,14 +190,14 @@
                 );
             };
             
-             window.confirm = function (message) {
+             /*window.confirm = function (message) {
                 navigator.notification.confirm(
                     message,    // message
                     null,       // callback
                     "Pella de Ocio", // title
                     ['Sí', 'No']        // buttonName
                 );
-            };
+            };*/
         }
         
         // Now safe to use device APIs
