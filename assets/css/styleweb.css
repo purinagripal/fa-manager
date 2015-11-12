@@ -182,8 +182,8 @@ a.menu_salir {
 .guiaeventos .cuadro .date b {font-size: 1.3em;}
 .guiaeventos .cuadro .date span.hora {font-size: 1.2em; line-height: 1.8;}
 .guiaeventos .cuadro .titulo h5 {display: inline;}
-.guiaeventos .cuadro .menu {font-size: 2em; text-align: right;}
-.guiaeventos .cuadro .menu .eliminar_ev {margin-left: 15px;}
+.guiaeventos .cuadro .menu_eventos {font-size: 2em; text-align: right;}
+.guiaeventos .cuadro .menu_eventos .editar_ev {margin-right: 15px;}
 /*.guiaeventos .cuadro .date b{display: block;font-size: 1.5em;}
 .guiaeventos .cuadro .date span{font-size: 1.25em;}*/
 /* guiaeventos --- en INDEX, AGENDA y EVENTO */

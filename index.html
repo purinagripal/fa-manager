@@ -62,24 +62,19 @@
 
 <script id="eventos-list-tpl" type="text/template">
     <div class="row cuadro" >
-        <div class="col-xs-12">
-            <div class="row">
+        
                 <div class="col-xs-12 titulo">
                     <span><b>{{fecha_dm.dia}} {{fecha_dm.mes}} - </b></span><h5>{{title}}</h5>
                 </div>
-            </div>
-            <div class="row">
+           
                 <div class="col-xs-6 ">     
                     <p>{{Ciudad.nombre}}</p>
                 </div>
-                <div class="col-xs-6 menu">
+                <div class="col-xs-6 menu_eventos">
                     <a class="editar_ev" data-id="{{id_evento}}"><span class="icon icon-menu"></span></a>
                     <a class="eliminar_ev" data-id="{{id_evento}}"><span class="icon icon-menu"></span></a>
                 </div>
-            </div>
-        </div>
-        
-        
+          
     </div>
 </script>
 
