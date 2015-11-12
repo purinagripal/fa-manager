@@ -91,7 +91,7 @@ var HomeView = Backbone.View.extend({
         Backbone.history.navigate('eventos/1', {trigger: true});
     },
     
-    eliminar_evento: function (event) {        
+    /*eliminar_evento: function (event) {        
         var id_evento = $(event.currentTarget).attr('data-id'); 
         
         if( confirm("Se eliminará el evento") ) {
@@ -99,11 +99,47 @@ var HomeView = Backbone.View.extend({
             eventoborrar.destroy();
         }       
         
+    },*/
+    
+    eliminar_evento: function (event) {        
+        var id_evento = $(event.currentTarget).attr('data-id'); 
+        
+        var self = this;
+        
+        if (navigator.notification) { 
+            window.confirm = function (message) {
+                navigator.notification.confirm(
+                    "Se eliminará el evento",    // message
+                    function(buttonIndex){
+                        self.onConfirmDelete(buttonIndex, id_evento);
+                    },       // callback
+                    "Pella de Ocio", // title
+                    ['Sí', 'No']        // buttonName
+                );
+            };
+            console.log("navigator.notification");
+        } else {
+            if( confirm("Se eliminará el evento") ) {
+                this.onConfirmDelete(1, id_evento);
+            }              
+        }
     },
-
+    
+    // 
+    onConfirmDelete: function(buttonIndex, id_evento){
+        console.log("onConfirmDelete, buttonIndex "+buttonIndex+" y id_evento: "+id_evento);
+        if(buttonIndex===1){
+            var eventoborrar = this.collection.get(id_evento);
+            eventoborrar.destroy();
+        }
+    },
 
     salir: function (event) {
         console.log("SALIR");
         navigator.app.exitApp();
     }
 });
+
+function onConfirm() {
+        alert('You selected button ' + buttonIndex);
+    }
