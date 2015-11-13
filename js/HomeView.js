@@ -107,17 +107,14 @@ var HomeView = Backbone.View.extend({
         var self = this;
         
         if (navigator.notification) { 
-            window.confirm = function (message) {
-                navigator.notification.confirm(
-                    "Se eliminará el evento",    // message
-                    function(buttonIndex){
-                        self.onConfirmDelete(buttonIndex, id_evento);
-                    },       // callback
-                    "Pella de Ocio", // title
-                    ['Sí', 'No']        // buttonName
-                );
-                console.log("inside function");
-            };
+            navigator.notification.confirm(
+                "Se eliminará el evento",    // message
+                function(buttonIndex){
+                    self.onConfirmDelete(buttonIndex, id_evento);
+                },       // callback
+                "Pella de Ocio", // title
+                ['Sí', 'No']        // buttonName
+            );
             console.log("navigator.notification");
         } else {
             if( confirm("Se eliminará el evento") ) {
