@@ -120,12 +120,13 @@ var HomeView = Backbone.View.extend({
             console.log("navigator.notification");
         } else {
             if( confirm("Se eliminará el evento") ) {
+                console.log("window.confirm");
                 this.onConfirmDelete(1, id_evento);
             }              
         }
     },
     
-    // 
+    // borra el evento señalado
     onConfirmDelete: function(buttonIndex, id_evento){
         console.log("onConfirmDelete, buttonIndex "+buttonIndex+" y id_evento: "+id_evento);
         if(buttonIndex===1){

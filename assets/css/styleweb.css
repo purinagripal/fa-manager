@@ -105,6 +105,9 @@ a:hover{color:#fff;text-decoration:none}
     margin-left: 8px;
     font-size: 1.5em;
 }
+.webfafont {
+    font-family: webfa;
+}
 
 /*
 .head_sup .glyphicon {
@@ -182,7 +185,7 @@ a.menu_salir {
 .guiaeventos .cuadro .date b {font-size: 1.3em;}
 .guiaeventos .cuadro .date span.hora {font-size: 1.2em; line-height: 1.8;}
 .guiaeventos .cuadro .titulo h5 {display: inline;}
-.guiaeventos .cuadro .menu_eventos {font-size: 2em; text-align: right;}
+.guiaeventos .cuadro .menu_eventos {font-size: 1.8em; text-align: right;}
 .guiaeventos .cuadro .menu_eventos .editar_ev {margin-right: 15px;}
 /*.guiaeventos .cuadro .date b{display: block;font-size: 1.5em;}
 .guiaeventos .cuadro .date span{font-size: 1.25em;}*/
@@ -246,7 +249,7 @@ a.menu_salir {
         margin: 0;
         margin-right: 8px;
         margin-left: 8px;
-        font-size: 1.3em;
+        font-size: 1.5em;
     }
     
 }

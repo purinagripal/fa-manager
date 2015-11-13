@@ -116,3 +116,24 @@
 .icon-brush:before {
   content: "E";
 }
+.icon-clock:before {
+  content: "i";
+}
+.icon-plus-circle:before {
+  content: "k";
+}
+.icon-plus:before {
+  content: "m";
+}
+.icon-hospital-square:before {
+  content: "n";
+}
+.icon-pencil:before {
+  content: "w";
+}
+.icon-edit-write:before {
+  content: "F";
+}
+.icon-trash-bin:before {
+  content: "G";
+}
