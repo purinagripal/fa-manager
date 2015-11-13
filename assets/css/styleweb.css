@@ -108,6 +108,9 @@ a:hover{color:#fff;text-decoration:none}
 .webfafont {
     font-family: webfa;
 }
+.icon.webfafont {
+    width: 30px;
+}
 
 /*
 .head_sup .glyphicon {

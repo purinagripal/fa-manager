@@ -116,6 +116,7 @@ var HomeView = Backbone.View.extend({
                     "Pella de Ocio", // title
                     ['Sí', 'No']        // buttonName
                 );
+                console.log("inside function");
             };
             console.log("navigator.notification");
         } else {
