@@ -22,7 +22,7 @@
                     <span class="icon icon-menu"></span>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuMain">
-                    <li><a class="link_perfil" >Perfil</a></li>
+                    <li><a class="link_locales" >Locales</a></li>
                     <li><a class="link_eventos" href="#">Eventos</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a class="menu_salir">Salir</a></li>
@@ -31,9 +31,6 @@
             <div class="clearfix"></div>
         </div>
         <div class="head_inf">
-        
-            <a class="boton_add pull-left"><span class="icon icon-plus"></span> Añadir evento</a>
-            
             <div class="dropdown selec_drop pull-right">
                 <a class="dropdown-toggle" id="dropdownMenuCateg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                     Categoría <span class="caret"></span>
@@ -64,29 +61,32 @@
 </script>
 
 <script id="eventos-list-tpl" type="text/template">
-    <div class="row cuadro" >
-        
-                <div class="col-xs-12 titulo">
-                    <span><b>{{fecha_dm.dia}} {{fecha_dm.mes}} - </b></span><h5>{{title}}</h5>
+    <div class="row cuadro" data-id="{{id_evento}}" >
+        <div class="col-xs-9">                
+            <h5><a href="#eventos/{{id_evento}}" >{{title}}</a></h5>
+            <div class="row">
+                <div class="col-xs-5">
+                    <a href="#eventos/{{id_evento}}" ><img src="http://test.mepwebs.com/uploads/medias/{{image}}" class="img-responsive" /></a>
                 </div>
-           
-                <div class="col-xs-6 ">     
-                    <p>{{Ciudad.nombre}}</p>
+                <div class="col-xs-7">
+                    <p>{{Eventor.first_name}}</p><p>{{Ciudad.nombre}}</p>
                 </div>
-                <div class="col-xs-6 menu_eventos">
-                    <a class="editar_ev" data-id="{{id_evento}}"><span class="icon icon-edit-write"></span></a>
-                    <a class="eliminar_ev" data-id="{{id_evento}}"><span class="icon icon-trash-bin"></span></a>
-                </div>
-          
+            </div>
+        </div>
+        <div class="col-xs-3 date">
+            <span class="dia">{{fecha_dm.diasemana}}</span>
+            <span><b>{{fecha_dm.dia}}</b> {{fecha_dm.mes}}</span>
+            <span class="hora">{{hora_format}} h</span>
+        </div>
     </div>
 </script>
 
-<script id="nuevo-evento-tpl" type="text/template">
+<script id="evento-tpl" type="text/template">
     <div class="header-50">
         <div class="head_sup">
             <a class="boton_atras pull-left"><span class="icon icon-arrow-left"></span></a>
             <a class="boton_inicio pull-left"><span class="icon icon-home"></span></a>
-        
+            
             <img src="logo.png" /> <h1>Pella de Ocio</h1>
             
             <div class="menu_drop dropdown pull-right">
@@ -101,64 +101,54 @@
                 </ul>
             </div>
             <a class="pull-right" onclick="window.plugins.socialsharing.share('Próximamente {{title}}, pincha en el enlace para más info.', 'Pella de Ocio', null, 'http://test.mepwebs.com/es/evento-{{id_evento}}')"><span class="icon icon-sharethis"></span></a>
-            
             <div class="clearfix"></div>
         </div>
     </div>
     
     <div class="container wrapper-absolute-50 evento-detalle">
         <div class="row cuadro">
-            <a class="link_create">create</a>
-        </div>
-    </div>
-</script>    
-    
-<script id="evento-tpl" type="text/template">
-    <div class="header-50">
-        <div class="head_sup">
-            <a class="boton_atras pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>
-            <a class="boton_inicio pull-left"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a>
-            
-            <img src="logo.png" /> <h1>Pella de Ocio</h1>
-            
-            <div class="menu_drop dropdown pull-right">
-                <a class="dropdown-toggle" id="dropdownMenuMain" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuMain">
-                    <li><a class="link_locales" >Locales</a></li>
-                    <li><a class="link_eventos" >Eventos</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a class="menu_salir">Salir</a></li>
-                </ul>
+            <div class="col-xs-12">
+                <h4>{{title}}</h4>
             </div>
-            <a class="pull-right" onclick="window.plugins.socialsharing.share('Próximamente {{title}}, pincha en el enlace para más info.', 'Pella de Ocio', null, 'http://test.mepwebs.com/es/evento-{{id_evento}}')"><i class="fa fa-share-alt"></i></a>
-            <!--<a class="pull-right" href="whatsapp://send?text={{title}}, visita http://test.mepwebs.com/es/evento-{{id_evento}} para más info"><span class="glyphicon glyphicon-share" aria-hidden="true"></span></a>-->
-            <div class="clearfix"></div>
+            <div class="col-xs-12 col-sm-5 col-lg-6">
+                <img src="http://test.mepwebs.com/uploads/medias/{{image}}" class="img-responsive" />
+            </div>
+            <div class="col-xs-12 col-sm-7 col-lg-6">
+                <div class="date">
+                    <span class="dia">{{fecha_dm.diasemana}} </span>
+                    <span><b>{{fecha_dm.dia}}</b> {{fecha_dm.mes}}, </span>
+                    <span class="hora"><i class="fa fa-clock-o"></i> {{hora_format}} h</span>
+                    <div class="clearfix"></div>
+                    <span class="local"><a class="local_link" data-id="{{Eventor.id_user}}">{{Eventor.first_name}}</a></span> <span class="ciudad">{{Ciudad.nombre}}</span>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="datos-evento">
+                    <p>{{precio}}</p>
+                    <p>{{horario}}</p>
+                    <p class="direc">{{direccion}}. {{Ciudad.nombre}}</p>
+                </div>
+                <div class="descr-evento">
+                    {{{descripcion}}}
+                </div>
+                <div class="date local_link" data-id="{{Eventor.id_user}}">
+                    <span class="local">{{Eventor.first_name}} </span><span class="ciudad"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> info</span>
+                    <div class="clearfix"></div>
+                </div>
+            </div>   
         </div>
     </div>
-    
-    <div class="container wrapper-absolute-50 evento-detalle">
-        <div class="row cuadro">
-            <a class="link_create">create</a>
-            <a class="link_readcoll">read collection</a>
-            <a class="link_readmodel">read model</a>
-            <a class="link_update">updated</a>
-            <a class="link_delete">delete</a>
-        </div>
-    </div>
-</script>
+    </script>
 
 <script id="locales-tpl" type="text/template">
     <div class="header">
         <div class="head_sup">
-            <a class="boton_inicio pull-left"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a>
+            <a class="boton_inicio pull-left"><span class="icon icon-home"></span></a>
             
             <img src="logo.png" /> <h1>Pella de Ocio</h1>
             
             <div class="menu_drop dropdown pull-right">
                 <a class="dropdown-toggle" id="dropdownMenuMain" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                    <span class="icon icon-menu"></span>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuMain">
                     <li><a class="link_locales" href="#locales" >Locales</a></li>
@@ -205,14 +195,14 @@
 <script id="local-tpl" type="text/template">
     <div class="header-50">
         <div class="head_sup">
-            <a class="boton_atras pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>
-            <a class="boton_inicio pull-left"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a>
+            <a class="boton_atras pull-left"><span class="icon icon-arrow-left"></span></a>
+            <a class="boton_inicio pull-left"><span class="icon icon-home"></span></a>
             
             <img src="logo.png" /> <h1>Pella de Ocio</h1>
             
             <div class="menu_drop dropdown pull-right">
                 <a class="dropdown-toggle" id="dropdownMenuMain" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                    <span class="icon icon-menu"></span>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuMain">
                     <li><a class="link_locales" >Locales</a></li>
@@ -221,7 +211,7 @@
                     <li><a class="menu_salir">Salir</a></li>
                 </ul>
             </div>
-            <a class="pull-right" onclick="window.plugins.socialsharing.share('{{Eventor.first_name}}, pincha en el enlace para más info.', 'Pella de Ocio', null, 'http://test.mepwebs.com/es/')"><i class="fa fa-share-alt"></i></a>
+            <a class="pull-right" onclick="window.plugins.socialsharing.share('{{Eventor.first_name}}, pincha en el enlace para más info.', 'Pella de Ocio', null, 'http://test.mepwebs.com/es/')"><span class="icon icon-sharethis"></span></a>
             <div class="clearfix"></div>
         </div>
     </div>
@@ -240,7 +230,7 @@
 <script id="local-details-tpl" type="text/template">
     <div class="cuadro">
         <div class="col-xs-12">
-            <h4><i class="fa fa-music"></i> {{Eventor.first_name}}</h4>
+            <h4>{{Eventor.first_name}}</h4>
         </div>
         <div class="col-xs-12 col-sm-5 col-lg-6">
             <img src="http://test.mepwebs.com/uploads/medias/{{Eventor.image}}" class="img-responsive" />
@@ -271,7 +261,6 @@
     
 <script src="js/models.js"></script>
 <script src="js/HomeView.js"></script>
-<script src="js/NuevoEventoView.js"></script>
 <script src="js/EventoListItemView.js"></script>    
 <script src="js/EventoView.js"></script>
 <script src="js/LocalesView.js"></script>
