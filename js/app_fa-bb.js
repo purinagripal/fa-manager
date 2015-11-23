@@ -1,11 +1,7 @@
 // We use an "Immediate Function" to initialize the application to avoid leaving anything behind in the global scope
 (function () {
-    
-    //Backbone.emulateHTTP = true;
 
     HomeView.prototype.template = Handlebars.compile($("#home-tpl").html());
-    NuevoEventoView.prototype.template = Handlebars.compile($("#nuevo-evento-tpl").html());
-    
     EventoListItemView.prototype.template = Handlebars.compile($("#eventos-list-tpl").html());
     EventoView.prototype.template = Handlebars.compile($("#evento-tpl").html());
     
@@ -25,50 +21,26 @@
     var AppRouter = Backbone.Router.extend({
 
         routes: {
-            "":                 "home",
-            "categ/:id_cat":    "categoria",
-            "zona/:id_ciudad":  "ciudad",
-            "eventoadd":        "evento_add",
-            "eventos/:id":      "eventoDetails"
+            "":                     "home",
+            "categ/:id_cat":        "categoria",
+            "zona/:id_ciudad":      "ciudad",
+            "eventos/:id":          "eventoDetails",
+            "locales":              "locales",
+            "zona_loc/:id_ciudad":  "ciudadLocales",
+            "local/:id":            "localDetails"
         },
 
         home: function () {
             // Since the home view never changes, we instantiate it and render it only once
             if (!homeView) {
                 this.eventosList = new EventoCollection();
-                
-                // para acceder a this dentro del done()
-                 var guardaThis = this;
-                
-                this.eventosList.fetch().done( function() {
-                        console.log("antes del fetch");
-                        // filtra los eventos del user (para ponerlos en el model)
-                        guardaThis.eventosUser = new EventoCollection( guardaThis.eventosList.where({id_user: "1"}) );
-                        
-
-                        console.log( 'fetch done, esconde splashscreen' );
-                        // ocultar pantalla presentacion 
-                        setTimeout(function() {
-                            navigator.splashscreen.hide();
-                        }, 1500);
-                    
-                        console.log("collection en app");
-                        console.log( guardaThis.eventosUser );
-                        //console.log( JSON.stringify(guardaThis.eventosUser) );
-                    
-                        homeView = new HomeView({collection: guardaThis.eventosUser});
-                        homeView.render();
-                        slider.slidePage(homeView.$el);
-                  });
-                
-                
-                
+                homeView = new HomeView({model: this.eventosList});
+                //homeView.render();
             } else {
                 console.log('reusing home view');
                 homeView.delegateEvents(); // delegate events when the view is recycled
-                slider.slidePage(homeView.$el);
             }
-            
+            slider.slidePage(homeView.$el);
         },
         
         categoria: function (id_cat) {
@@ -78,22 +50,21 @@
             console.log('categ: '+homeView.categoria);
             console.log('ciudad: '+homeView.ciudad);
             
-            
             if (homeView.categoria == 0) {
                 if( homeView.ciudad != 0 ) {
                     // filtra solo x por ciudad
-                    this.eventosCateg = new EventoCollection(this.eventosUser.where({id_ciudad: homeView.ciudad}));
+                    this.eventosCateg = new EventoCollection(this.eventosList.where({id_ciudad: homeView.ciudad}));
                 } else {
                     // coge todas las categorías, vuelve a mostrar la lista inicial
-                    this.eventosCateg = this.eventosUser;
+                    this.eventosCateg = this.eventosList;
                 }
             } else {
                 if( homeView.ciudad != 0 ) {
                     // filtra x categoria y x ciudad
-                    this.eventosCateg = new EventoCollection(this.eventosUser.where({id_categoria: homeView.categoria, id_ciudad: homeView.ciudad}));
+                    this.eventosCateg = new EventoCollection(this.eventosList.where({id_categoria: homeView.categoria, id_ciudad: homeView.ciudad}));
                 } else {
                     // filtra solo x categoria
-                    this.eventosCateg = new EventoCollection(this.eventosUser.where({id_categoria: homeView.categoria}));
+                    this.eventosCateg = new EventoCollection(this.eventosList.where({id_categoria: homeView.categoria}));
                 }
             }
             
@@ -101,7 +72,7 @@
             console.log(this.eventosCateg);
             //console.log(JSON.stringify(this.eventosCateg));
             
-            homeView.collection = this.eventosCateg;
+            homeView.model = this.eventosCateg;
             homeView.render();
         },
         
@@ -115,18 +86,18 @@
             if (homeView.categoria == 0) {
                 if( homeView.ciudad != 0 ) {
                     // filtra solo x por ciudad
-                    this.eventosCiudad = new EventoCollection(this.eventosUser.where({id_ciudad: homeView.ciudad}));
+                    this.eventosCiudad = new EventoCollection(this.eventosList.where({id_ciudad: homeView.ciudad}));
                 } else {
                     // coge todas las categorías, vuelve a mostrar la lista inicial
-                    this.eventosCiudad = this.eventosUser;
+                    this.eventosCiudad = this.eventosList;
                 }
             } else {
                 if( homeView.ciudad != 0 ) {
                     // filtra x categoria y x ciudad
-                    this.eventosCiudad = new EventoCollection(this.eventosUser.where({id_categoria: homeView.categoria, id_ciudad: homeView.ciudad}));
+                    this.eventosCiudad = new EventoCollection(this.eventosList.where({id_categoria: homeView.categoria, id_ciudad: homeView.ciudad}));
                 } else {
                     // filtra solo x categoria
-                    this.eventosCiudad = new EventoCollection(this.eventosUser.where({id_categoria: homeView.categoria}));
+                    this.eventosCiudad = new EventoCollection(this.eventosList.where({id_categoria: homeView.categoria}));
                 }
             }
             
@@ -134,27 +105,66 @@
             console.log(this.eventosCiudad);
             //console.log(JSON.stringify(this.eventosCateg));
             
-            homeView.collection = this.eventosCiudad;
+            homeView.model = this.eventosCiudad;
             homeView.render();
-        },
-        
-        evento_add: function () {
-            // reiniciamos scroll
-            $("html,body").scrollTop(0);
-            
-            // vinculamos la coleccion this.eventosUser a la vista
-            slider.slidePage(new NuevoEventoView({collection: this.eventosUser}).render().$el);
         },
 
         eventoDetails: function (id) {
             //var employee = new Evento({id: id});
             // coge el evento de la coleccion del HOME
-            this.evento = this.eventosUser.get(id);
+            this.evento = this.eventosList.get(id);
 
             $("html,body").scrollTop(0);
             slider.slidePage(new EventoView({model: this.evento}).render().$el);
-        }
+        },
         
+        locales: function () {
+            // Since the home view never changes, we instantiate it and render it only once
+            if (!localesView) {
+                this.localesList = this.eventosList.obtenerLocales();
+                //console.log(JSON.stringify(this.localesList));
+                
+                localesView = new LocalesView({model: this.localesList});
+            } else {
+                console.log('reusing locales view');
+                localesView.delegateEvents(); // delegate events when the view is recycled
+            }
+            
+            $("html,body").scrollTop(0);
+            slider.slidePage(localesView.$el);
+        },
+        
+        ciudadLocales: function (id_ciudad) {
+            
+            localesView.ciudad = id_ciudad;
+            
+            console.log('ciudad: '+localesView.ciudad);
+            
+            if( localesView.ciudad != 0 ) {
+                // filtra solo x por ciudad
+                this.localesCiudad = new Backbone.Collection( this.localesList.where({id_ciudad: localesView.ciudad}) );
+            } else {
+                // coge todos los locales, vuelve a mostrar la lista inicial
+                this.localesCiudad = this.localesList;
+            }
+            
+            
+            console.log("imprime listaciudad");
+            console.log(this.localesCiudad);
+            
+            localesView.model = this.localesCiudad;
+            localesView.render();
+        },
+        
+        localDetails: function (id) {
+            console.log("localDetails funcion");
+            //console.log(JSON.stringify(this.eventosList));
+            // lista de eventos del Local
+            this.eventosLocal = new EventoCollection( this.eventosList.where({id_user: id}) );
+            
+            $("html,body").scrollTop(0);
+            slider.slidePage(new LocalView({collection: this.eventosLocal}).render().$el);
+        }
         
     });
 
@@ -183,19 +193,10 @@
                 navigator.notification.alert(
                     message,    // message
                     null,       // callback
-                    "Pella de Ocio", // title
+                    "Workshop", // title
                     'OK'        // buttonName
                 );
             };
-            
-             /*window.confirm = function (message) {
-                navigator.notification.confirm(
-                    message,    // message
-                    null,       // callback
-                    "Pella de Ocio", // title
-                    ['Sí', 'No']        // buttonName
-                );
-            };*/
         }
         
         // Now safe to use device APIs

@@ -6,6 +6,9 @@ var HomeView = Backbone.View.extend({
         this.ciudad = 0;
         
         this.collection.on("reset", this.render, this);
+        // renderiza tras el save
+        this.collection.on("sync", this.render, this);
+        // renderiza tras el destroy
         this.collection.on("remove", this.render, this);
         
     },
@@ -45,6 +48,9 @@ var HomeView = Backbone.View.extend({
                 ciudad_txt = 'Ciudad';
         }
         this.$('#dropdownMenuCiudad').html(ciudad_txt+' <span class="caret"></span>');
+        
+        console.log(JSON.stringify(this.collection.models));
+        console.log(this.collection);
                 
         _.each(this.collection.models, 
                function (evento) {$('.guiaeventos', this.el).append(new EventoListItemView({model: evento}).render().el);}, 
@@ -53,6 +59,7 @@ var HomeView = Backbone.View.extend({
     },
 
     events: {
+        "click .boton_add": "add_evento",
         "click .eliminar_ev": "eliminar_evento",
         "click .menu_salir": "salir",
         //"click .row.cuadro": "ver_evento",
@@ -83,6 +90,11 @@ var HomeView = Backbone.View.extend({
         Backbone.history.navigate('', {replace: true});
     },
     
+    add_evento: function (event) {
+        console.log("add evento");
+        Backbone.history.navigate('eventoadd', {trigger: true});
+    },
+    
     ver_evento: function (event) {
         //var id_evento = $(event.currentTarget).attr('data-id'); 
         
@@ -91,15 +103,6 @@ var HomeView = Backbone.View.extend({
         Backbone.history.navigate('eventos/1', {trigger: true});
     },
     
-    /*eliminar_evento: function (event) {        
-        var id_evento = $(event.currentTarget).attr('data-id'); 
-        
-        if( confirm("Se eliminará el evento") ) {
-            var eventoborrar = this.collection.get(id_evento);
-            eventoborrar.destroy();
-        }       
-        
-    },*/
     
     eliminar_evento: function (event) {        
         var id_evento = $(event.currentTarget).attr('data-id'); 
@@ -119,11 +122,10 @@ var HomeView = Backbone.View.extend({
         } else {
             if( confirm("Se eliminará el evento") ) {
                 console.log("window.confirm");
-                this.onConfirmDelete(1, id_evento);
+                self.onConfirmDelete(1, id_evento);
             }              
         }
     },
-    
     // borra el evento señalado
     onConfirmDelete: function(buttonIndex, id_evento){
         console.log("onConfirmDelete, buttonIndex "+buttonIndex+" y id_evento: "+id_evento);
@@ -138,7 +140,3 @@ var HomeView = Backbone.View.extend({
         navigator.app.exitApp();
     }
 });
-
-function onConfirm() {
-        alert('You selected button ' + buttonIndex);
-    }

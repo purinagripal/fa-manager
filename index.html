@@ -31,6 +31,9 @@
             <div class="clearfix"></div>
         </div>
         <div class="head_inf">
+        
+            <a class="boton_add pull-left"><span class="icon icon-plus"></span> Añadir evento</a>
+            
             <div class="dropdown selec_drop pull-right">
                 <a class="dropdown-toggle" id="dropdownMenuCateg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                     Categoría <span class="caret"></span>
@@ -78,6 +81,38 @@
     </div>
 </script>
 
+<script id="nuevo-evento-tpl" type="text/template">
+    <div class="header-50">
+        <div class="head_sup">
+            <a class="boton_atras pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>
+            <a class="boton_inicio pull-left"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a>
+            
+            <img src="logo.png" /> <h1>Pella de Ocio</h1>
+            
+            <div class="menu_drop dropdown pull-right">
+                <a class="dropdown-toggle" id="dropdownMenuMain" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuMain">
+                    <li><a class="link_locales" >Locales</a></li>
+                    <li><a class="link_eventos" >Eventos</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a class="menu_salir">Salir</a></li>
+                </ul>
+            </div>
+            <a class="pull-right" onclick="window.plugins.socialsharing.share('Próximamente {{title}}, pincha en el enlace para más info.', 'Pella de Ocio', null, 'http://test.mepwebs.com/es/evento-{{id_evento}}')"><i class="fa fa-share-alt"></i></a>
+            
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    
+    <div class="container wrapper-absolute-50 evento-detalle">
+        <div class="row cuadro">
+            <a class="link_create">create</a>
+        </div>
+    </div>
+</script>    
+    
 <script id="evento-tpl" type="text/template">
     <div class="header-50">
         <div class="head_sup">
@@ -112,7 +147,7 @@
             <a class="link_delete">delete</a>
         </div>
     </div>
-    </script>
+</script>
 
 <script id="locales-tpl" type="text/template">
     <div class="header">
@@ -236,6 +271,7 @@
     
 <script src="js/models.js"></script>
 <script src="js/HomeView.js"></script>
+<script src="js/NuevoEventoView.js"></script>
 <script src="js/EventoListItemView.js"></script>    
 <script src="js/EventoView.js"></script>
 <script src="js/LocalesView.js"></script>
