@@ -20,22 +20,17 @@ var EventoCollection = Backbone.Collection.extend({
         // recorro la lista de eventos (this)
         _.each( this.models, 
                 function(element) {
-                    //console.log("evento dentro de each");
-                    //console.log(element.attributes.Eventor);
-            
+                    // some recorre la lista de locales (this) para ver si el Eventor está incluido
                     var esta_incluido = _.some(this, function(local) {return local.id_user === element.attributes.Eventor.id_user;});
                     if(!esta_incluido){
-                        //console.log("::: incluye 1 local ::: id_user: "+element.attributes.Eventor.id_user);
+                        // el Eventor no esta incluido, lo añade a la lista de locales
                         locales.push(element.attributes.Eventor);
                     }  
                     //console.log("::: locales ::: ")
                     //console.log(this);
                 }, 
+                // this = locales
                 locales);
-        
-        //console.log("::: despues del each ::: ");
-        //console.log(":::locales al terminar::: ");
-        //console.log(locales);
 
         var localesList = new Backbone.Collection(locales);
         

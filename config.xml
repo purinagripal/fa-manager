@@ -77,4 +77,5 @@
         <allow-intent href="itms-apps:*" />
     </platform>
     <platform name="winphone" />
+    <platform name="wp8" />
 </widget>

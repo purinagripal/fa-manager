@@ -11,6 +11,7 @@ var NuevoEventoView = Backbone.View.extend({
        
     events: {
         "click .link_create": "crea_model",
+        "submit #addEventoForm": "enviar_formulario",
     
         "click .local_link": "ver_local",
         "click .link_locales": "ver_locales",
@@ -27,6 +28,8 @@ var NuevoEventoView = Backbone.View.extend({
         
         var evento = new Evento({id_categoria: 1, id_user: 1, date: '03/14/2016', time: '10:00', id_ciudad: 1, image:'imagen.jpg', direccion:'c/ montaña blanca', title_es: 'titulo español'});
         this.collection.add(evento);
+        
+        // save genera POST /appeventos
         evento.save(null, {
             success:function(model, response){
                 console.log(model);
@@ -41,8 +44,47 @@ var NuevoEventoView = Backbone.View.extend({
                 //console.log(JSON.stringify(evento.attributes)); // imprime {"id":1, "nombre": "Alfonso", "apellidos": "Marin Marin"}
             },
             wait: true
-        }); // se genera POST /appeventos
-        //this.collection.fetch({reset:true});
+        }); 
+    },
+    
+    enviar_formulario: function (event) {
+        console.log("enviar formulario");
+        
+        // array con los datos del formulario
+        var datosForm = $("#addEventoForm").serializeObject();
+        console.log( datosForm );
+        
+        var datosAñadir = {id_categoria: 1, id_user: 1, date: '03/14/2016', time: '10:00', id_ciudad: 1, image:'imagen.jpg'};
+        
+        // añade a datosForm las propiedades de datosAñadir
+        _.extend(datosForm, datosAñadir);
+        console.log( datosForm );
+        
+        // creamos evento con datos del formulario
+        var evento = new Evento(datosForm);
+        //var evento = new Evento({id_categoria: 1, id_user: 1, date: '03/14/2016', time: '10:00', id_ciudad: 1, image:'imagen.jpg', direccion:'c/ montaña blanca', title_es: 'titulo español'});
+        this.collection.add(evento);
+        
+        // guardamos el evento (sync con el servidor)
+        // save genera POST /appeventos
+        evento.save(null, {
+            success:function(model, response){
+                console.log(model);
+                console.log(response);
+                console.log("succes save");
+                //console.log(JSON.stringify(evento.attributes)); // imprime {"id":1, "nombre": "Alfonso", "apellidos": "Marin Marin"}
+            },
+            error:function(model, response){
+                console.log("error save");
+                console.log(model);
+                console.log(response);
+                //console.log(JSON.stringify(evento.attributes)); // imprime {"id":1, "nombre": "Alfonso", "apellidos": "Marin Marin"}
+            },
+            wait: true
+        }); 
+        
+        // para que el formulario no recargue la página
+        return false;
     },
     
     volver_inicio: function (event) {

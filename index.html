@@ -108,6 +108,11 @@
     
     <div class="container wrapper-absolute-50 evento-detalle">
         <div class="row cuadro">
+            <form id="addEventoForm" name="addEventoForm" >
+              Name: <input type="text" name="title_es"/>
+              Age: <input type="text" name="direccion"/>
+              <input type="submit" value="Submit"></input>
+            </form>
             <a class="link_create">create</a>
         </div>
     </div>
@@ -268,7 +273,8 @@
 <script src="lib/backbone.js"></script>
 <script src="lib/pageslider.js"></script>
 <script src="lib/bootstrap.min.js"></script>
-    
+
+<script src="js/custom.js"></script>    
 <script src="js/models.js"></script>
 <script src="js/HomeView.js"></script>
 <script src="js/NuevoEventoView.js"></script>
