@@ -163,6 +163,12 @@ a.menu_salir {
 }
 /* fin estilos header */
 
+/* formulario evento */
+.formulario {margin-bottom: 1.5em;}
+.formulario textarea, .formulario input, .formulario select {width: 100%; padding:1%; border:1px solid #ccc; margin-bottom: 1.2em; border-radius: 5px; outline: none;}
+.formulario button {border:none; width: 100%; padding: 0.3em 0; font-size: 1.5em;}
+/* fin formulario evento  */
+
 /* ************* */
 /* FIN APP MOVIL */
 /* ************* */
@@ -196,12 +202,7 @@ a.menu_salir {
 /* guiaeventos --- en INDEX, AGENDA y EVENTO */
 
 
-/* contacto --- en INDEX */
-.contactform {margin-bottom: 1.5em;}
-.contactform textarea, .contactform input {width: 100%; padding:2%; border:1px solid #ccc; margin-bottom: 1.2em; border-radius: 5px; outline: none;}
-.contactform button{border:none; width: 100%; padding: 0.3em 0; font-size: 1.5em;}
-.contactform iframe{float: left;}
-/* contacto --- en INDEX */
+
 
 
 /* evento-detalle --- en EVENTO */

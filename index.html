@@ -108,12 +108,28 @@
     
     <div class="container wrapper-absolute-50 evento-detalle">
         <div class="row cuadro">
-            <form id="addEventoForm" name="addEventoForm" >
-              Name: <input type="text" name="title_es"/>
-              Age: <input type="text" name="direccion"/>
-              <input type="submit" value="Submit"></input>
-            </form>
-            <a class="link_create">create</a>
+            <div class="col-xs-12">
+                <form id="addEventoForm" name="addEventoForm" class="formulario" >
+                    Categoría:
+                    <select name="id_categoria" class="form-control">
+                        <option value="1" >Música</option>
+                        <option value="4" >Talleres</option>
+                    </select>
+                    Fecha: <input type="text" name="date"/>
+                    Hora: <input type="text" name="time"/>
+                    Título: <input type="text" name="title_es"/>
+                    Descripción: <textarea name="descripcion_es" rows="5" placeholder="Message"></textarea>
+                    Dirección: <input type="text" name="direccion"/>
+                    <select name="id_ciudad" class="form-control">
+                        <option value="1" >Lajares</option>
+                        <option value="2" >Corralejo</option>
+                    </select>
+                    Horario (info extra): <input type="text" name="horario_es"/>
+                    Precio: <input type="text" name="precio_es"/>
+                    <input type="submit" value="Submit"></input>
+                </form>
+                <a class="link_create">create</a>
+            </div>
         </div>
     </div>
 </script>    

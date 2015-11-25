@@ -54,7 +54,7 @@ var NuevoEventoView = Backbone.View.extend({
         var datosForm = $("#addEventoForm").serializeObject();
         console.log( datosForm );
         
-        var datosAñadir = {id_categoria: 1, id_user: 1, date: '03/14/2016', time: '10:00', id_ciudad: 1, image:'imagen.jpg'};
+        var datosAñadir = {id_user: 1, image:'imagen.jpg'};
         
         // añade a datosForm las propiedades de datosAñadir
         _.extend(datosForm, datosAñadir);
@@ -62,7 +62,6 @@ var NuevoEventoView = Backbone.View.extend({
         
         // creamos evento con datos del formulario
         var evento = new Evento(datosForm);
-        //var evento = new Evento({id_categoria: 1, id_user: 1, date: '03/14/2016', time: '10:00', id_ciudad: 1, image:'imagen.jpg', direccion:'c/ montaña blanca', title_es: 'titulo español'});
         this.collection.add(evento);
         
         // guardamos el evento (sync con el servidor)
