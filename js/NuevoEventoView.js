@@ -57,7 +57,7 @@ var NuevoEventoView = Backbone.View.extend({
         console.log( datosForm );
         
         
-        var datosAnadir = {id_user: window.auth_id_user, image:'imagen.jpg'};
+        var datosAnadir = {id_user: window.auth_id_user};
         //var datosAnadir = {id_user: 1, image:'imagen.jpg'};
         
         // añade a datosForm las propiedades de datosAñadir
@@ -68,6 +68,9 @@ var NuevoEventoView = Backbone.View.extend({
         var evento = new Evento(datosForm);
         this.collection.add(evento);
         
+        // muestra imagen cargando...
+        $("#carga").html('<p>Cargando...<img src="assets/ajax-loader.gif" /></p>');
+        
         // guardamos el evento (sync con el servidor)
         // save genera POST /appeventos
         evento.save(null, {
@@ -75,6 +78,12 @@ var NuevoEventoView = Backbone.View.extend({
                 console.log(model);
                 console.log(response);
                 console.log("succes save");
+                
+                /*setTimeout(function() {
+                    // resetea el historial
+                    window.historial = [""];
+                    Backbone.history.navigate( "", {trigger: true} );
+                }, 5000);*/
                 
                 // resetea el historial
                 window.historial = [""];

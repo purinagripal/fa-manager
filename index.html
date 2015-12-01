@@ -110,9 +110,10 @@
     </div>
     
     <div class="container wrapper-absolute-50 evento-detalle">
-        <div class="row cuadro">
+        <div id="carga" class="row cuadro">
             
             <form id="addEventoForm" name="addEventoForm" class="formulario" >
+                <input type="hidden" name="image" value="{{Eventor.image}}" />
                 <div class="col-xs-12">
                     Categoría:
                     <select name="id_categoria" class="form-control" tabindex=1 >
