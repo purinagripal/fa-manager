@@ -17,6 +17,7 @@
     var slider = new PageSlider($('body'));
     
     window.historial = [""];
+    window.auth_id_user = "2";
 
     var homeView;
     var localesView;
@@ -43,7 +44,8 @@
                 this.eventosList.fetch().done( function() {
                         console.log("antes del fetch");
                         // filtra los eventos del user (para ponerlos en el model)
-                        guardaThis.eventosUser = new EventoCollection( guardaThis.eventosList.where({id_user: "1"}) );
+                        //guardaThis.eventosUser = new EventoCollection( guardaThis.eventosList.where({id_user: "1"}) );
+                        guardaThis.eventosUser = new EventoCollection( guardaThis.eventosList.where({id_user: window.auth_id_user}) );
                         
 
                         console.log( 'fetch done, esconde splashscreen' );
@@ -188,23 +190,11 @@
                 );
             };
             
-             /*window.confirm = function (message) {
-                navigator.notification.confirm(
-                    message,    // message
-                    null,       // callback
-                    "Pella de Ocio", // title
-                    ['Sí', 'No']        // buttonName
-                );
-            };*/
         }
         
         // Now safe to use device APIs
         document.addEventListener("backbutton", onBackKeyDown, false);
         
-        
-        /*setTimeout(function() {
-            navigator.splashscreen.hide();
-        }, 5000);*/
     };
     
     function onBackKeyDown() {

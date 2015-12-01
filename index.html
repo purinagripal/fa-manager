@@ -9,6 +9,9 @@
     <link href="assets/css/webfa-icons.css" rel="stylesheet"/>
     <link href="assets/css/styleweb.css" rel="stylesheet"/>
     <link href="assets/css/pageslider.css" rel="stylesheet">
+    
+    
+    
 </head>
 <body>
 
@@ -112,29 +115,36 @@
             <form id="addEventoForm" name="addEventoForm" class="formulario" >
                 <div class="col-xs-12">
                     Categoría:
-                    <select name="id_categoria" class="form-control">
+                    <select name="id_categoria" class="form-control" tabindex=1 >
                         <option value="1" >Música</option>
                         <option value="4" >Talleres</option>
                     </select>
                 </div>
                 <div class="col-xs-6">
-                    Fecha: <input type="date" name="date"/>
+                    <!-- el value tendra la fecha en formato YYYY-mm-dd siempre -->
+                    Fecha: <input type="date" name="date" placeholder="dd-mm-aaaa" tabindex=2 />
                 </div>
                 <div class="col-xs-6">
-                    Hora: <input type="time" name="time"/>
+                    Hora: <input type="time" name="time" tabindex=3 />
                 </div>
                 <div class="clearfix"></div>
                 <div class="col-xs-12">
-                    Título: <input type="text" name="title_es"/>
-                    Descripción: <textarea name="descripcion_es" rows="2" placeholder="Message"></textarea>
-                    Dirección: <input type="text" name="direccion"/>
-                    <select name="id_ciudad" class="form-control">
-                        <option value="1" >Lajares</option>
-                        <option value="2" >Corralejo</option>
+                    Título: <input type="text" name="title_es" tabindex=4 />
+                    Descripción: <textarea name="descripcion_es" rows="2" placeholder="Message" tabindex=5 ></textarea>
+                    Dirección: <input type="text" name="direccion" tabindex=6 value="{{Eventor.direccion}}" />
+                    <select name="id_ciudad" class="form-control" tabindex=7 >
+                        {{#equal Eventor.id_ciudad 1}}
+                            <option value="1" selected>Lajares</option>
+                            <option value="2" >Corralejo</option>
+                        {{/equal}}
+                        {{#equal Eventor.id_ciudad 2}}
+                            <option value="1" >Lajares</option>
+                            <option value="2" selected >Corralejo</option>
+                        {{/equal}}
                     </select>
-                    Horario (info extra): <input type="text" name="horario_es"/>
-                    Precio: <input type="text" name="precio_es"/>
-                    <input type="submit" value="Submit"></input>
+                    Horario (info extra): <input type="text" name="horario_es" tabindex=8 />
+                    Precio: <input type="text" name="precio_es" tabindex=9 />
+                    <input type="submit" value="Submit" tabindex=10 ></input>
                 </div>
             </form>
             
@@ -297,7 +307,7 @@
 <script src="lib/backbone.js"></script>
 <script src="lib/pageslider.js"></script>
 <script src="lib/bootstrap.min.js"></script>
-
+    
 <script src="js/custom.js"></script>    
 <script src="js/models.js"></script>
 <script src="js/HomeView.js"></script>

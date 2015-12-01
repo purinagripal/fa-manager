@@ -55,6 +55,9 @@
     <allow-intent href="whatsapp:*" />
     <access origin="whatsapp:*" launch-external="yes" />    
     
+    <!-- DatePicker -->
+    <gap:plugin name="com.sharinglabs.cordova.plugin.datepicker" />
+    
     <!--
     <access origin="*" />
     <plugin name="cordova-plugin-whitelist" version="1" />
