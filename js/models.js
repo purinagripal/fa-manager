@@ -7,10 +7,10 @@ var EventoCollection = Backbone.Collection.extend({
     model: Evento,
 
     // para q funcione en navegador poner en localhost
-    url: "http://localhost/fuerteagenda_cms/appeventos",
+    //url: "http://localhost/fuerteagenda_cms/appeventos",
     
     // desde el movil sí debe funcionar en servidor
-    //url: "http://test.mepwebs.com/appeventos",
+    url: "http://test.mepwebs.com/appeventos",
     
     comparator: 'date',
     
