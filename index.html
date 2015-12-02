@@ -109,8 +109,15 @@
         </div>
     </div>
     
-    <div class="container wrapper-absolute-50 evento-detalle">
-        <div id="carga" class="row cuadro">
+    <div id="cargando" class="container wrapper-absolute-50">
+        <div class="row cuadro">
+            <p>Guardando evento...</p>
+            <p><img src="assets/ajax-loader.gif" /></p>
+        </div>
+    </div>
+    
+    <div id="form_addevento" class="container wrapper-absolute-50 evento-detalle">
+        <div class="row cuadro">
             
             <form id="addEventoForm" name="addEventoForm" class="formulario" >
                 <input type="hidden" name="image" value="{{Eventor.image}}" />
@@ -123,14 +130,14 @@
                 </div>
                 <div class="col-xs-6">
                     <!-- el value tendra la fecha en formato YYYY-mm-dd siempre -->
-                    Fecha: <input type="date" name="date" placeholder="dd-mm-aaaa" tabindex=2 />
+                    Fecha: <input type="date" name="date" placeholder="dd-mm-aaaa" tabindex=2 required />
                 </div>
                 <div class="col-xs-6">
-                    Hora: <input type="time" name="time" tabindex=3 />
+                    Hora: <input type="time" name="time" tabindex=3 required />
                 </div>
                 <div class="clearfix"></div>
                 <div class="col-xs-12">
-                    Título: <input type="text" name="title_es" tabindex=4 />
+                    Título: <input type="text" name="title_es" tabindex=4 required />
                     Descripción: <textarea name="descripcion_es" rows="2" placeholder="Message" tabindex=5 ></textarea>
                     Dirección: <input type="text" name="direccion" tabindex=6 value="{{Eventor.direccion}}" />
                     <select name="id_ciudad" class="form-control" tabindex=7 >

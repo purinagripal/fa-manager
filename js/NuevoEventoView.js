@@ -6,7 +6,11 @@ var NuevoEventoView = Backbone.View.extend({
     render: function () {
         var primerModelo = this.collection.at(0);
         this.$el.html(this.template(primerModelo.toJSON()));
+        
         console.log("auth user = "+window.auth_id_user);
+        console.log("coleccion en nuevo evento: ");
+        console.log(JSON.stringify(this.collection.models));
+        //$('#cargando').hide();
         return this;
     },
     
@@ -67,9 +71,16 @@ var NuevoEventoView = Backbone.View.extend({
         // creamos evento con datos del formulario
         var evento = new Evento(datosForm);
         this.collection.add(evento);
+        var coleccionEventos = this.collection;
         
         // muestra imagen cargando...
-        $("#carga").html('<p>Cargando...<img src="assets/ajax-loader.gif" /></p>');
+        // cambia el contenido html
+        //$("#carga").html('<p>Cargando...<img src="assets/ajax-loader.gif" /></p>');
+        
+        // muestra imagen cargando...
+        $('#form_addevento').hide();
+        $('#cargando').show();
+        
         
         // guardamos el evento (sync con el servidor)
         // save genera POST /appeventos
@@ -93,7 +104,9 @@ var NuevoEventoView = Backbone.View.extend({
                 console.log("error save");
                 console.log(model);
                 console.log(response);
-                //console.log(JSON.stringify(evento.attributes)); // imprime {"id":1, "nombre": "Alfonso", "apellidos": "Marin Marin"}
+                
+                // eliminamos el evento de la colección ya que no se ha guardado en server
+                coleccionEventos.remove(evento);
             },
             wait: true
         }); 

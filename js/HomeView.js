@@ -95,13 +95,13 @@ var HomeView = Backbone.View.extend({
         Backbone.history.navigate('eventoadd', {trigger: true});
     },
     
-    ver_evento: function (event) {
+    /*ver_evento: function (event) {
         //var id_evento = $(event.currentTarget).attr('data-id'); 
         
         
         //console.log(event);
         Backbone.history.navigate('eventos/1', {trigger: true});
-    },
+    },*/
     
     
     eliminar_evento: function (event) {        

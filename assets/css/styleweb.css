@@ -169,6 +169,17 @@ a.menu_salir {
 .formulario button {border:none; width: 100%; padding: 0.3em 0; font-size: 1.5em;}
 /* fin formulario evento  */
 
+/* cargando */
+#form_addevento {
+    z-index: 1;
+}
+#cargando {
+    display: none;
+    z-index: 100;
+}
+
+#cargando .cuadro {background-color: #222; text-align: center; padding-top: 140px; padding-bottom: 200px;}
+
 /* ************* */
 /* FIN APP MOVIL */
 /* ************* */
