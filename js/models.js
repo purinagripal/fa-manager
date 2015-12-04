@@ -1,5 +1,21 @@
 var Evento = Backbone.Model.extend({
-    idAttribute: 'id_evento'
+    idAttribute: 'id_evento',
+    
+    validate: function (attrs, options) {
+        if (attrs.date == '') {
+          return "Introduzca una fecha";
+        }
+        if (!validarFechaAMD(attrs.date) && !validarFechaDMA(attrs.date)) {
+            // si falla para los dos formatos posibles
+            return "Introduzca la fecha en formato dd-mm-aaaa";
+        }
+        if (attrs.time == '') {
+          return "Introduzca la hora";
+        }
+        if (attrs.title_es == '') {
+          return "Introduzca el título del evento";
+        }
+    }
 });
 
 var EventoCollection = Backbone.Collection.extend({
@@ -41,3 +57,41 @@ var EventoCollection = Backbone.Collection.extend({
     }
 
 });
+
+
+function validarFechaAMD(fecha) {
+    // esta debería validarse true siempre que se use html5
+    console.log('validando fecha aaaa-mm-dd');
+    //Funcion validarFecha 
+    //valida fecha en formato aaaa-mm-dd
+    var fechaArr = fecha.split('-');
+    var aho = fechaArr[0];
+    var mes = fechaArr[1];
+    var dia = fechaArr[2];
+
+    var plantilla = new Date(aho, mes - 1, dia);//mes empieza de cero Enero = 0
+
+    if (plantilla.getFullYear() == aho && plantilla.getMonth() == mes-1 && plantilla.getDate() == dia){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function validarFechaDMA(fecha) {
+    console.log('validando fecha dd-mm-aaaa');
+    //Funcion validarFecha 
+    //valida fecha en formato dd-mm-aaaa
+    var fechaArr = fecha.split('-');
+    var dia = fechaArr[0];
+    var mes = fechaArr[1];
+    var aho = fechaArr[2];
+
+    var plantilla = new Date(aho, mes - 1, dia);//mes empieza de cero Enero = 0
+
+    if (plantilla.getFullYear() == aho && plantilla.getMonth() == mes-1 && plantilla.getDate() == dia){
+        return true;
+    }else{
+        return false;
+    }
+}

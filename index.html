@@ -130,25 +130,24 @@
                 </div>
                 <div class="col-xs-6">
                     <!-- el value tendra la fecha en formato YYYY-mm-dd siempre -->
-                    Fecha: <input type="date" name="date" placeholder="dd-mm-aaaa" tabindex=2 required />
+                    Fecha: <input type="date" name="date" placeholder="dd-mm-aaaa" tabindex=2 />
                 </div>
                 <div class="col-xs-6">
-                    Hora: <input type="time" name="time" tabindex=3 required />
+                    Hora: <input type="time" name="time" placeholder="HH:MM" tabindex=3 />
                 </div>
                 <div class="clearfix"></div>
                 <div class="col-xs-12">
-                    Título: <input type="text" name="title_es" tabindex=4 required />
+                    Título: <input type="text" name="title_es" tabindex=4 value="" />
                     Descripción: <textarea name="descripcion_es" rows="2" placeholder="Message" tabindex=5 ></textarea>
                     Dirección: <input type="text" name="direccion" tabindex=6 value="{{Eventor.direccion}}" />
                     <select name="id_ciudad" class="form-control" tabindex=7 >
-                        {{#equal Eventor.id_ciudad 1}}
-                            <option value="1" selected>Lajares</option>
-                            <option value="2" >Corralejo</option>
-                        {{/equal}}
-                        {{#equal Eventor.id_ciudad 2}}
-                            <option value="1" >Lajares</option>
-                            <option value="2" selected >Corralejo</option>
-                        {{/equal}}
+                            <option value="2" {{#equal Eventor.id_ciudad 2}}selected{{/equal}}>Corralejo</option>
+                            <option value="3" {{#equal Eventor.id_ciudad 3}}selected{{/equal}}>Cotillo</option>
+                            <option value="4" {{#equal Eventor.id_ciudad 4}}selected{{/equal}}>La Oliva</option>
+                            <option value="1" {{#equal Eventor.id_ciudad 1}}selected{{/equal}}>Lajares</option>
+                            <option value="6" {{#equal Eventor.id_ciudad 6}}selected{{/equal}}>Puerto del Rosario</option>
+                            <option value="7" {{#equal Eventor.id_ciudad 7}}selected{{/equal}}>Puerto Lajas</option>
+                            <option value="5" {{#equal Eventor.id_ciudad 5}}selected{{/equal}}>Tindaya</option>
                     </select>
                     Horario (info extra): <input type="text" name="horario_es" tabindex=8 />
                     Precio: <input type="text" name="precio_es" tabindex=9 />

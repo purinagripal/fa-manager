@@ -7,10 +7,15 @@ var NuevoEventoView = Backbone.View.extend({
         var primerModelo = this.collection.at(0);
         this.$el.html(this.template(primerModelo.toJSON()));
         
-        console.log("auth user = "+window.auth_id_user);
+        console.log("auth user = " + window.auth_id_user);
         console.log("coleccion en nuevo evento: ");
         console.log(JSON.stringify(this.collection.models));
         //$('#cargando').hide();
+        
+        /*// reseteamos el formulario (en firefox quedan datos de una vez para otra)
+        $("#addEventoForm").reset();
+        console.log('resetea formulario');*/
+        
         return this;
     },
     
@@ -58,7 +63,9 @@ var NuevoEventoView = Backbone.View.extend({
         
         // array con los datos del formulario
         var datosForm = $("#addEventoForm").serializeObject();
-        console.log( datosForm );
+        
+        console.log('datos del formulario');
+        console.log(datosForm);
         
         
         var datosAnadir = {id_user: window.auth_id_user};
@@ -66,50 +73,61 @@ var NuevoEventoView = Backbone.View.extend({
         
         // añade a datosForm las propiedades de datosAñadir
         _.extend(datosForm, datosAnadir);
-        console.log( datosForm );
+        //console.log(datosForm);
         
         // creamos evento con datos del formulario
         var evento = new Evento(datosForm);
-        this.collection.add(evento);
-        var coleccionEventos = this.collection;
         
-        // muestra imagen cargando...
-        // cambia el contenido html
-        //$("#carga").html('<p>Cargando...<img src="assets/ajax-loader.gif" /></p>');
-        
-        // muestra imagen cargando...
-        $('#form_addevento').hide();
-        $('#cargando').show();
-        
-        
-        // guardamos el evento (sync con el servidor)
-        // save genera POST /appeventos
-        evento.save(null, {
-            success:function(model, response){
-                console.log(model);
-                console.log(response);
-                console.log("succes save");
-                
-                /*setTimeout(function() {
+        // validamos el evento
+        if (evento.isValid()) {
+            // añadimos a coleccion y guardamos el evento
+            this.collection.add(evento);
+            var coleccionEventos = this.collection;
+
+            // muestra imagen cargando...
+            // cambia el contenido html
+            //$("#carga").html('<p>Cargando...<img src="assets/ajax-loader.gif" /></p>');
+
+            // muestra imagen cargando...
+            $('#form_addevento').hide();
+            $('#cargando').show();
+            
+            // guardamos el evento (sync con el servidor)
+            // save genera POST /appeventos
+            evento.save(null, {
+                success:function(model, response){
+                    console.log(model);
+                    console.log(response);
+                    console.log("succes save");
+
+                    /*setTimeout(function() {
+                        // resetea el historial
+                        window.historial = [""];
+                        Backbone.history.navigate( "", {trigger: true} );
+                    }, 5000);*/
+
+                    // lo ordeno una vez tengo respuesta del servidor
+                    coleccionEventos.sort();
+                    
                     // resetea el historial
                     window.historial = [""];
                     Backbone.history.navigate( "", {trigger: true} );
-                }, 5000);*/
-                
-                // resetea el historial
-                window.historial = [""];
-                Backbone.history.navigate( "", {trigger: true} );
-            },
-            error: function(model, response) {
-                console.log("error save");
-                console.log(model);
-                console.log(response);
-                
-                // eliminamos el evento de la colección ya que no se ha guardado en server
-                coleccionEventos.remove(evento);
-            },
-            wait: true
-        }); 
+                },
+                error: function(model, response) {
+                    console.log("error save");
+                    console.log(model);
+                    console.log(response);
+
+                    // eliminamos el evento de la colección ya que no se ha guardado en server
+                    coleccionEventos.remove(evento);
+                },
+                wait: true
+            });
+          
+        } else {
+            // avisamos de que faltan datos
+            alert(evento.validationError);
+        }
         
         // para que el formulario no recargue la página
         return false;

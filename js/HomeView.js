@@ -7,7 +7,7 @@ var HomeView = Backbone.View.extend({
         
         this.collection.on("reset", this.render, this);
         // renderiza tras el save
-        this.collection.on("sync", this.render, this);
+        this.collection.on("sort", this.render, this);
         // renderiza tras el destroy
         this.collection.on("remove", this.render, this);
         
