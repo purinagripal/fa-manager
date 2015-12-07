@@ -89,14 +89,17 @@ var NuevoEventoView = Backbone.View.extend({
                 processData: false,
                 type: 'POST',
                 success: function(data){
-                    var id_img = JSON.parse(data);
-                    console.log(id_img+' upload ok!!');
+                    console.log('upload ok');
+                    console.log(data.file);
+                    
                     $('#subiendo').hide();
+                    
                     // cambiamos la imagen q se ve
-                    //$('#evento-img').attr('src', 'http://localhost/fuerteagenda_cms/uploads/medias/'+id_img);
-                    $('#evento-img').attr('src', 'http://test.mepwebs.com/uploads/medias/'+id_img);
+                    //$('#evento-img').attr('src', 'http://localhost/fuerteagenda_cms/uploads/medias/'+data.file);
+                    $('#evento-img').attr('src', 'http://test.mepwebs.com/uploads/medias/'+data.file);
+                    
                     // cambiamos el input image para q se guarde en bbdd con el evento
-                    $("#image").val(id_img);
+                    $("#image").val(data.file);
                 },
                 error: function(data){
                   alert(data+' no upload');
