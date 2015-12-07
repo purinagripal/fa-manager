@@ -58,6 +58,9 @@
     <!-- DatePicker -->
     <gap:plugin name="com.sharinglabs.cordova.plugin.datepicker" />
     
+    <!-- File Transfer - subir imagenes -->
+    <plugin name="org.apache.cordova.file-transfer" spec="0.5.0" source="pgb" />
+    
     <!--
     <access origin="*" />
     <plugin name="cordova-plugin-whitelist" version="1" />

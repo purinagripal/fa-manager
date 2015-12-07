@@ -71,25 +71,24 @@ var NuevoEventoView = Backbone.View.extend({
         console.log('archivo del formulario');
         console.log(fileform);
         
-        var data = new FormData();
-        data.append('prueba', 'texto de prueba');
-        data.append('archivo', fileform);
+        /*var data = new FormData();
+        data.append('file', fileform);
         console.log('data formulario');
-        console.log(data);
+        console.log(data);*/
         
         $.ajax({
-            url: 'http://test.mepwebs.com/app_upload',
-            //url: 'http://localhost/fuerteagenda_cms/app_upload',
-            data: data,
+            //url: 'http://test.mepwebs.com/app_upload',
+            url: 'http://localhost/fuerteagenda_cms/app_upload',
+            data: fileform,
             cache: false,
             contentType: false,
             processData: false,
             type: 'POST',
             success: function(data){
-              alert(data+'upload ok!!');
+              alert('upload ok!!');
             },
             error: function(data){
-              alert(data+'no upload');
+              alert('no upload');
             }
         });
         

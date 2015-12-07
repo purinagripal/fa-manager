@@ -119,7 +119,7 @@
     <div id="form_addevento" class="container wrapper-absolute-50 evento-detalle">
         <div class="row cuadro">
             
-            <form id="addEventoForm" name="addEventoForm" class="formulario" >
+            <form id="addEventoForm" name="addEventoForm" class="formulario" enctype="multipart/form-data" >
                 <input type="hidden" name="image" value="{{Eventor.image}}" />
                 <div class="col-xs-12">
                     Categoría:
@@ -137,6 +137,7 @@
                 </div>
                 <div class="clearfix"></div>
                 <div class="col-xs-12">
+                    Imagen: <input type="file" name="img_file" />
                     Título: <input type="text" name="title_es" tabindex=4 value="" />
                     Descripción: <textarea name="descripcion_es" rows="2" placeholder="Message" tabindex=5 ></textarea>
                     Dirección: <input type="text" name="direccion" tabindex=6 value="{{Eventor.direccion}}" />
