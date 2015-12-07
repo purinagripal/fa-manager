@@ -90,7 +90,7 @@ var NuevoEventoView = Backbone.View.extend({
                 type: 'POST',
                 success: function(data){
                     var id_img = JSON.parse(data);
-                    //alert(id_img+' upload ok!!');
+                    console.log(id_img+' upload ok!!');
                     $('#subiendo').hide();
                     // cambiamos la imagen q se ve
                     //$('#evento-img').attr('src', 'http://localhost/fuerteagenda_cms/uploads/medias/'+id_img);
