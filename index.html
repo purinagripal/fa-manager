@@ -112,15 +112,32 @@
     <div id="cargando" class="container wrapper-absolute-50">
         <div class="row cuadro">
             <p>Guardando evento...</p>
-            <p><img src="assets/ajax-loader.gif" /></p>
+            <p><img src="assets/saving.gif" /></p>
         </div>
     </div>
     
     <div id="form_addevento" class="container wrapper-absolute-50 evento-detalle">
         <div class="row cuadro">
+            <form id="imageForm" name="imageForm" class="formulario" enctype="multipart/form-data" >
+                <div class="col-xs-12">
+                    <img id="evento-img" src="http://test.mepwebs.com/uploads/medias/{{Eventor.image}}" class="img-responsive" />
+                    <!--<img id="evento-img" src="http://localhost/fuerteagenda_cms/uploads/medias/{{Eventor.image}}" class="img-responsive" />-->
+                    <div id="subiendo">
+                        <p>Subiendo imagen...</p>
+                        <p><img src="assets/upload.gif" /></p>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <input type="file" name="img_file" />
+                </div>
+                <div class="col-xs-6">
+                    <input type="submit" value="Subir imagen" ></input>
+                </div>
+            </form>
+            
             
             <form id="addEventoForm" name="addEventoForm" class="formulario" enctype="multipart/form-data" >
-                <input type="hidden" name="image" value="{{Eventor.image}}" />
+                <input type="hidden" name="image" id="image" value="{{Eventor.image}}" />
                 <div class="col-xs-12">
                     Categoría:
                     <select name="id_categoria" class="form-control" tabindex=1 >
@@ -137,7 +154,7 @@
                 </div>
                 <div class="clearfix"></div>
                 <div class="col-xs-12">
-                    Imagen: <input type="file" name="img_file" />
+                    
                     Título: <input type="text" name="title_es" tabindex=4 value="" />
                     Descripción: <textarea name="descripcion_es" rows="2" placeholder="Message" tabindex=5 ></textarea>
                     Dirección: <input type="text" name="direccion" tabindex=6 value="{{Eventor.direccion}}" />

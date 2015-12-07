@@ -166,6 +166,7 @@ a.menu_salir {
 /* formulario evento */
 .formulario {margin-bottom: 1.5em;}
 .formulario textarea, .formulario input, .formulario select {width: 100%; padding:1%; border:1px solid #ccc; margin-bottom: 1.2em; border-radius: 5px; outline: none;}
+.formulario input[type=file] {border: none;}
 .formulario button {border:none; width: 100%; padding: 0.3em 0; font-size: 1.5em;}
 /* fin formulario evento  */
 
@@ -179,6 +180,12 @@ a.menu_salir {
 }
 
 #cargando .cuadro {background-color: #222; text-align: center; padding-top: 140px; padding-bottom: 250px;}
+
+#subiendo {
+    display: none;
+    z-index: 100;
+    text-align: center;
+}
 
 /* ************* */
 /* FIN APP MOVIL */
@@ -218,7 +225,7 @@ a.menu_salir {
 
 /* evento-detalle --- en EVENTO */
 .evento-detalle .cuadro {background-color: #222; }
-.evento-detalle .cuadro img {margin-bottom: 1em;}
+.evento-detalle .cuadro img {margin-top: 10px; margin-bottom: 1em;}
 .evento-detalle .cuadro h4 {color: #f2ab00; font-size: 2em; margin-bottom: 0.5em;}
 .evento-detalle .cuadro p {margin: 0.6em 0; font-size: 1.12em; line-height: 1; }
 .evento-detalle .cuadro .datos-evento p {text-align: right;}
