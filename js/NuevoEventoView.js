@@ -22,7 +22,8 @@ var NuevoEventoView = Backbone.View.extend({
        
     events: {
         "click .link_create": "crea_model",
-        "submit #imageForm": "subir_imagen",
+        //"submit #imageForm": "subir_imagen",
+        "change #imageInput": "subir_imagen",
         "submit #addEventoForm": "enviar_formulario",
         
         "click .local_link": "ver_local",
@@ -102,7 +103,8 @@ var NuevoEventoView = Backbone.View.extend({
                     $("#image").val(data.file);
                 },
                 error: function(data){
-                  alert(data+' no upload');
+                    $('#subiendo').hide();
+                    alert('Error en la subida');
                 }
             });
             
