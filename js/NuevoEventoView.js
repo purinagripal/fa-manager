@@ -26,7 +26,6 @@ var NuevoEventoView = Backbone.View.extend({
         "change #imageInput": "subir_imagen",
         "submit #addEventoForm": "enviar_formulario",
         
-        "click .local_link": "ver_local",
         "click .link_locales": "ver_locales",
         "click .link_eventos": "volver_inicio",
         "click .boton_inicio": "volver_inicio",
@@ -34,31 +33,6 @@ var NuevoEventoView = Backbone.View.extend({
         "click .menu_salir": "salir"
     },
     
-    
-    // FUNCIONES CRUD - RESTful
-    /*crea_model: function (event) {
-        console.log('create');
-        
-        var evento = new Evento({id_categoria: 1, id_user: 1, date: '03/14/2016', time: '10:00', id_ciudad: 1, image: 'imagen.jpg', direccion: 'c/ montaña blanca', title_es: 'titulo español'});
-        this.collection.add(evento);
-        
-        // save genera POST /appeventos
-        evento.save(null, {
-            success: function (model, response) {
-                console.log(model);
-                console.log(response);
-                console.log("succes save");
-                //console.log(JSON.stringify(evento.attributes)); // imprime {"id":1, "nombre": "Alfonso", "apellidos": "Marin Marin"}
-            },
-            error: function(model, response) {
-                console.log("error save");
-                console.log(model);
-                console.log(response);
-                //console.log(JSON.stringify(evento.attributes)); // imprime {"id":1, "nombre": "Alfonso", "apellidos": "Marin Marin"}
-            },
-            wait: true
-        });
-    },*/
     
     subir_imagen: function (event) {
         
@@ -71,6 +45,9 @@ var NuevoEventoView = Backbone.View.extend({
         
         // solo si ha seleccionado un archivo
         if (fileform) {
+            // comprobar que fileform es una imagen y
+            // procesar fileform para reducir su tamaño
+            
             var data = new FormData();
             data.append('archivo', fileform);
             data.append('id_user', window.auth_id_user);
