@@ -79,8 +79,8 @@ var NuevoEventoView = Backbone.View.extend({
             var ctx = canvas.getContext("2d");
             ctx.drawImage(img, 0, 0, width, height);
     
-            //dataUrl = canvas.toDataURL(file['type']);
-            dataUrl = canvas.toDataURL("image/jpeg");
+            dataUrl = canvas.toDataURL(file['type']);
+            //dataUrl = canvas.toDataURL("image/jpeg");
             document.getElementById('evento-img').src = dataUrl; 
             console.log("dataURl");
             console.log(dataUrl);
