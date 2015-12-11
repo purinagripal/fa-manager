@@ -96,8 +96,10 @@ var NuevoEventoView = Backbone.View.extend({
                 var ctx = canvas.getContext("2d");
                 ctx.drawImage(img, 0, 0, width, height);
 
+                // parece que en android siempre genera un png
                 //dataUrl = canvas.toDataURL(file['type']);
-                dataUrl = canvas.toDataURL("image/jpeg");
+                //dataUrl = canvas.toDataURL("image/png");
+                dataUrl = canvas.toDataUrl("image/jpeg", 1.0);
                 console.log("dataURl");
                 console.log(dataUrl);
                 document.getElementById('evento-img').src = dataUrl; 
