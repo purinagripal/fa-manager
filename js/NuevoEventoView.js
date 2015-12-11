@@ -59,12 +59,15 @@ var NuevoEventoView = Backbone.View.extend({
             // asociamos a la imagen el resultado de leer "file"
             img.src = e.target.result;
             
+            console.log("e.target.result");
+            console.log(e.target.result);
+            
             // esperamos que la imagen esté lista
             img.onload = function () {
                 
-                console.log("e.target.result");
-                console.log(e.target.result);
-                console.log("file type")
+                console.log("dentro de img.onload");
+                
+                console.log("file type");
                 console.log(file['type']);
 
                 var canvas = document.createElement("canvas");
