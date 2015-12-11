@@ -42,7 +42,9 @@ var NuevoEventoView = Backbone.View.extend({
         var file = $("#imageForm :file")[0].files[0];
         console.log("file");
         console.log(file);
+        
         var dataUrl = "";
+        
         // Create an image
         var img = document.createElement("img");
         // Create a file reader
@@ -51,56 +53,49 @@ var NuevoEventoView = Backbone.View.extend({
         // Set the image once loaded into file reader
         reader.onload = function(e)
         {
+            // asociamos a la imagen el resultado de leer "file"
             img.src = e.target.result;
             
-            console.log("e.target.result");
-            console.log(e.target);
-            console.log("file type")
-            console.log(file['type']);
-    
-            var canvas = document.createElement("canvas");
-            //var canvas = $("<canvas>", {"id":"testing"})[0];
-            var ctx = canvas.getContext("2d");
-            ctx.drawImage(img, 0, 0);
-    
-            // Set Width and Height
-            var MAX_WIDTH = 400;
-            var width = img.width;
-            var height = img.height;
-    
-            
-            if (width > MAX_WIDTH) {
-                height *= MAX_WIDTH / width;
-                width = MAX_WIDTH;
-            }
-            
-            canvas.width = width;
-            canvas.height = height;
-            var ctx = canvas.getContext("2d");
-            ctx.drawImage(img, 0, 0, width, height);
-    
-            //dataUrl = canvas.toDataURL(file['type']);
-            dataUrl = canvas.toDataURL("image/jpeg");
-            document.getElementById('evento-img').src = dataUrl; 
-            console.log("dataURl");
-            console.log(dataUrl);
-            
-            
-            // Post the data
-//            var fd = new FormData();
-//            fd.append("image", dataUrl);
-//    
-//            var xhr = new XMLHttpRequest();
-//            xhr.upload.addEventListener("progress", uploadProgress, false);
-//            xhr.addEventListener("load", uploadComplete, false);
-//            xhr.addEventListener("error", uploadFailed, false);
-//            xhr.addEventListener("abort", uploadCanceled, false);
-//            xhr.open("POST", "savetofile.php");
-//            xhr.send(fd);
-            
-            
-            // solo si ha seleccionado un archivo
-            if (file) {
+            // esperamos que la imagen esté lista
+            img.onload = function () {
+                
+                console.log("e.target.result");
+                console.log(e.target.result);
+                console.log("file type")
+                console.log(file['type']);
+
+                var canvas = document.createElement("canvas");
+                //var ctx = canvas.getContext("2d");
+                //ctx.drawImage(img, 0, 0);
+
+                // Set Width and Height
+                var MAX_WIDTH = 400;
+                var width = img.width;
+                var height = img.height;
+
+                console.log(width);
+                console.log(height);
+
+                if (width > MAX_WIDTH) {
+                    height *= MAX_WIDTH / width;
+                    width = MAX_WIDTH;
+                }
+
+                console.log(width);
+                console.log(height);
+
+                canvas.width = width;
+                canvas.height = height;
+                var ctx = canvas.getContext("2d");
+                ctx.drawImage(img, 0, 0, width, height);
+
+                //dataUrl = canvas.toDataURL(file['type']);
+                dataUrl = canvas.toDataURL("image/jpeg");
+                console.log("dataURl");
+                console.log(dataUrl);
+                document.getElementById('evento-img').src = dataUrl; 
+
+                // datos para enviar
                 var data = new FormData();
                 data.append('fileDataUrl', dataUrl);
                 data.append('fileName', file['name']);
@@ -126,13 +121,13 @@ var NuevoEventoView = Backbone.View.extend({
                         // data.file solo funciona en servidor (devuelve objeto)
                         console.log(data);
                         console.log(data.file);
-
+    
                         $('#subiendo').hide();
-
+    
                         // cambiamos la imagen q se ve
                         //$('#evento-img').attr('src', 'http://localhost/fuerteagenda_cms/uploads/medias/'+data.file);
                         //$('#evento-img').attr('src', 'http://test.mepwebs.com/uploads/medias/'+data.file);
-
+    
                         // cambiamos el input image para q se guarde en bbdd con el evento
                         $("#image").val(data.file);
                     },
@@ -141,9 +136,11 @@ var NuevoEventoView = Backbone.View.extend({
                         alert('Error en la subida');
                     }
                 });
-
+                
             }
             
+
+    
         }
         // Load files into file reader
         reader.readAsDataURL(file);
