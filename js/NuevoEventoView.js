@@ -59,8 +59,9 @@ var NuevoEventoView = Backbone.View.extend({
             // asociamos a la imagen el resultado de leer "file"
             img.src = e.target.result;
             
-            console.log("e.target.result");
-            console.log(e.target.result);
+            console.log("dentro de reader.onload");
+            //console.log("e.target.result");
+            //console.log(e.target.result);
             
             // esperamos que la imagen esté lista
             img.onload = function () {
