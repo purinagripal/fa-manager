@@ -38,6 +38,9 @@ var NuevoEventoView = Backbone.View.extend({
         
         console.log("subir imagen");
         
+        // muestra imagen subiendo...
+        $('#subiendo').show();
+        
         /////////////////
         var file = $("#imageForm :file")[0].files[0];
         console.log("file");
@@ -89,8 +92,8 @@ var NuevoEventoView = Backbone.View.extend({
                 var ctx = canvas.getContext("2d");
                 ctx.drawImage(img, 0, 0, width, height);
 
-                //dataUrl = canvas.toDataURL(file['type']);
-                dataUrl = canvas.toDataURL("image/jpeg");
+                dataUrl = canvas.toDataURL(file['type']);
+                //dataUrl = canvas.toDataURL("image/jpeg");
                 console.log("dataURl");
                 console.log(dataUrl);
                 document.getElementById('evento-img').src = dataUrl; 
@@ -105,8 +108,7 @@ var NuevoEventoView = Backbone.View.extend({
                 console.log('data formulario');
                 console.log(data);
 
-                // muestra imagen subiendo...
-                $('#subiendo').show();
+                
 
                 $.ajax({
                     url: 'http://test.mepwebs.com/app_upload',
