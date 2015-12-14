@@ -24,8 +24,7 @@ var NuevoEventoView = Backbone.View.extend({
         "click .link_create": "crea_model",
         //"submit #imageForm": "subir_imagen",
         "change #imageInput": "subir_imagen",
-        "click #boton_guardar": "enviar_formulario",
-        //"submit #addEventoForm": "enviar_formulario",
+        "submit #addEventoForm": "enviar_formulario",
         
         "click .link_locales": "ver_locales",
         "click .link_eventos": "volver_inicio",
@@ -41,8 +40,6 @@ var NuevoEventoView = Backbone.View.extend({
         
         // muestra imagen subiendo...
         $('#subiendo').show();
-        // deshabilita el boton guardar_evento hasta que la imagen se ha cargado
-        $('#boton_guardar').attr("disabled", true);
         
         /////////////////
         var file = $("#imageForm :file")[0].files[0];
@@ -137,8 +134,6 @@ var NuevoEventoView = Backbone.View.extend({
                         console.log(data.file);
     
                         $('#subiendo').hide();
-                        $('#subidaok').show();
-                        $('#boton_guardar').attr("disabled", false);
     
                         // cambiamos la imagen q se ve
                         //$('#evento-img').attr('src', 'http://localhost/fuerteagenda_cms/uploads/medias/'+data.file);
@@ -149,7 +144,6 @@ var NuevoEventoView = Backbone.View.extend({
                     },
                     error: function(data){
                         $('#subiendo').hide();
-                        $('#boton_guardar').disabled = false;
                         alert('Error en la subida');
                     }
                 });

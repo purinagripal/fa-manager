@@ -126,13 +126,15 @@
                         <p>Subiendo imagen...</p>
                         <p><img src="assets/upload.gif" /></p>
                     </div>
+                    <div id="subidaok">
+                        <p>Subida completada</p>
+                    </div>
                 </div>
                 <div class="col-xs-5">
-                    Cambiar imagen
+                    Cambiar imagen:
                 </div>
                 <div class="col-xs-7">
                     <input id="imageInput" type="file" name="img_file" accept="image/*" />
-                    <!--<input type="submit" value="Subir imagen" ></input>-->
                 </div>
             </form>
             
@@ -170,7 +172,8 @@
                     </select>
                     Horario (info extra): <input type="text" name="horario_es" tabindex=8 />
                     Precio: <input type="text" name="precio_es" tabindex=9 />
-                    <input type="submit" value="Submit" tabindex=10 ></input>
+                    <!--<input type="submit" value="Submit" tabindex=10 ></input>-->
+                    <a id="boton_guardar" class="btn btn-pella btn-lg btn-block" >Guardar evento</a>
                 </div>
             </form>
             
