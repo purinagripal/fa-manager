@@ -99,21 +99,22 @@ a:hover{color:#fff;text-decoration:none}
     display: inline;
     font-size:1.4em;
 }
+/*
 .head_sup .icon {
     margin: 0;
     margin-right: 8px;
     margin-left: 8px;
     font-size: 1.5em;
 }
-.webfafont {
+*/
+/*.webfafont {
     font-family: webfa;
 }
-/*para que en el movil tenga ancho el icono*/
+para que en el movil tenga ancho el icono
 .icon {
     padding-right: 25px;
-}
+}*/
 
-/*
 .head_sup .glyphicon {
     margin-right: 8px;
     margin-left: 8px;
@@ -124,7 +125,6 @@ a:hover{color:#fff;text-decoration:none}
     margin-left: 8px;
     font-size: 1.4em;
 }
-*/
 
 .menu_drop {
     display: inline;
@@ -185,11 +185,13 @@ a.menu_salir {
     display: none;
     z-index: 100;
     text-align: center;
+}
+#subiendo p {
     font-weight: 700;
     color: #fff;
     background-color: #f2ab00;
     padding-top: 10px;
-    padding-bottom: 0px;
+    padding-bottom: 10px;
     border-radius: 5px;
 }
 
@@ -208,7 +210,7 @@ a.menu_salir {
 }
 
 #boton_guardar {
-    margin-bottom: 150px;
+    margin-bottom: 450px;
 }
 
 
@@ -335,11 +337,11 @@ fieldset[disabled] .btn-pella.active {
         font-size:1.1em;
     }
     
-    .head_sup .icon {
+    .head_sup .fa {
         margin: 0;
         margin-right: 8px;
         margin-left: 8px;
-        font-size: 1.5em;
+        font-size: 1.2em;
     }
     
 }

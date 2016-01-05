@@ -7,7 +7,6 @@
     <link href="assets/css/bootstrap.css" rel="stylesheet"/>
     
     <link href="assets/css/webfa-icons.css" rel="stylesheet"/>
-    <link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
     <link href="assets/css/styleweb.css" rel="stylesheet"/>
     <link href="assets/css/pageslider.css" rel="stylesheet">
     
@@ -23,7 +22,7 @@
             
             <div class="menu_drop dropdown pull-right">
                 <a class="dropdown-toggle" id="dropdownMenuMain" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    <i class="fa fa-bars"></i>
+                    <span class="icon icon-menu"></span>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuMain">
                     <li><a class="link_perfil" >Perfil</a></li>
@@ -36,7 +35,7 @@
         </div>
         <div class="head_inf">
         
-            <a class="boton_add pull-left"><i class="fa fa-plus-circle"></i> Añadir evento</a>
+            <a class="boton_add pull-left"><span class="icon icon-plus"></span> Añadir evento</a>
             
             <div class="dropdown selec_drop pull-right">
                 <a class="dropdown-toggle" id="dropdownMenuCateg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -78,8 +77,8 @@
                     <p>{{Ciudad.nombre}}</p>
                 </div>
                 <div class="col-xs-6 menu_eventos">
-                    <a class="editar_ev" data-id="{{id_evento}}"><i class="fa fa-pencil-square-o"></i></a>
-                    <a class="eliminar_ev" data-id="{{id_evento}}"><i class="fa fa-trash-o"></i></a>
+                    <a class="editar_ev" data-id="{{id_evento}}"><span class="icon icon-edit-write"></span></a>
+                    <a class="eliminar_ev" data-id="{{id_evento}}"><span class="icon icon-trash-bin"></span></a>
                 </div>
           
     </div>
@@ -88,14 +87,14 @@
 <script id="nuevo-evento-tpl" type="text/template">
     <div class="header-50">
         <div class="head_sup">
-            <a class="boton_atras pull-left"><i class="fa fa-arrow-left"></i></a>
-            <a class="boton_inicio pull-left"><i class="fa fa-home"></i></a>
+            <a class="boton_atras pull-left"><span class="icon icon-arrow-left"></span></a>
+            <a class="boton_inicio pull-left"><span class="icon icon-home"></span></a>
         
             <img src="logo.png" /> <h1>Pella de Ocio</h1>
             
             <div class="menu_drop dropdown pull-right">
                 <a class="dropdown-toggle" id="dropdownMenuMain" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    <i class="fa fa-bars"></i>
+                    <span class="icon icon-menu"></span>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuMain">
                     <li><a class="link_locales" >Locales</a></li>
@@ -104,7 +103,8 @@
                     <li><a class="menu_salir">Salir</a></li>
                 </ul>
             </div>
-                        
+            <a class="pull-right" onclick="window.plugins.socialsharing.share('Próximamente {{title}}, pincha en el enlace para más info.', 'Pella de Ocio', null, 'http://test.mepwebs.com/es/evento-{{id_evento}}')"><span class="icon icon-sharethis"></span></a>
+            
             <div class="clearfix"></div>
         </div>
     </div>
