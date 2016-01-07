@@ -175,6 +175,8 @@
                             <option value="5" {{#equal Eventor.id_ciudad 5}}selected{{/equal}}>Tindaya</option>
                     </select>
                     <div id="mapa-evento"></div>
+                    <input type="hidden" name="lat" id="lat" value="{{Eventor.lat}}" />
+                    <input type="hidden" name="long" id="long" value="{{Eventor.long}}" />
                     Horario (info extra): <input type="text" name="horario_es" tabindex=8 />
                     Precio: <input type="text" name="precio_es" tabindex=9 />
                     <!--<input type="submit" value="Submit" tabindex=10 ></input>-->
