@@ -6,7 +6,6 @@
 
     <link href="assets/css/bootstrap.css" rel="stylesheet"/>
     
-    <link href="assets/css/webfa-icons.css" rel="stylesheet"/>
     <link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
     <link href="assets/css/styleweb.css" rel="stylesheet"/>
     <link href="assets/css/pageslider.css" rel="stylesheet">
@@ -175,6 +174,7 @@
                             <option value="7" {{#equal Eventor.id_ciudad 7}}selected{{/equal}}>Puerto Lajas</option>
                             <option value="5" {{#equal Eventor.id_ciudad 5}}selected{{/equal}}>Tindaya</option>
                     </select>
+                    <div id="mapa-evento"></div>
                     Horario (info extra): <input type="text" name="horario_es" tabindex=8 />
                     Precio: <input type="text" name="precio_es" tabindex=9 />
                     <!--<input type="submit" value="Submit" tabindex=10 ></input>-->
@@ -186,153 +186,9 @@
     </div>
 </script>    
     
-<script id="evento-tpl" type="text/template">
-    <div class="header-50">
-        <div class="head_sup">
-            <a class="boton_atras pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>
-            <a class="boton_inicio pull-left"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a>
-            
-            <img src="logo.png" /> <h1>Pella de Ocio</h1>
-            
-            <div class="menu_drop dropdown pull-right">
-                <a class="dropdown-toggle" id="dropdownMenuMain" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuMain">
-                    <li><a class="link_locales" >Locales</a></li>
-                    <li><a class="link_eventos" >Eventos</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a class="menu_salir">Salir</a></li>
-                </ul>
-            </div>
-            <a class="pull-right" onclick="window.plugins.socialsharing.share('Próximamente {{title}}, pincha en el enlace para más info.', 'Pella de Ocio', null, 'http://test.mepwebs.com/es/evento-{{id_evento}}')"><i class="fa fa-share-alt"></i></a>
-            <!--<a class="pull-right" href="whatsapp://send?text={{title}}, visita http://test.mepwebs.com/es/evento-{{id_evento}} para más info"><span class="glyphicon glyphicon-share" aria-hidden="true"></span></a>-->
-            <div class="clearfix"></div>
-        </div>
-    </div>
-    
-    <div class="container wrapper-absolute-50 evento-detalle">
-        <div class="row cuadro">
-            <a class="link_create">create</a>
-            <a class="link_readcoll">read collection</a>
-            <a class="link_readmodel">read model</a>
-            <a class="link_update">updated</a>
-            <a class="link_delete">delete</a>
-        </div>
-    </div>
-</script>
-
-<script id="locales-tpl" type="text/template">
-    <div class="header">
-        <div class="head_sup">
-            <a class="boton_inicio pull-left"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a>
-            
-            <img src="logo.png" /> <h1>Pella de Ocio</h1>
-            
-            <div class="menu_drop dropdown pull-right">
-                <a class="dropdown-toggle" id="dropdownMenuMain" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuMain">
-                    <li><a class="link_locales" href="#locales" >Locales</a></li>
-                    <li><a class="link_eventos" >Eventos</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a class="menu_salir">Salir</a></li>
-                </ul>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-        <div class="head_inf">
-            <div class="dropdown selec_drop pull-right">
-              <a class="dropdown-toggle" id="dropdownMenuCiudad" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                Ciudad <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuCiudad">
-                <li><a href="#zona_loc/1">Lajares</a></li>
-                <li><a href="#zona_loc/2">Corralejo</a></li>
-                <li><a href="#zona_loc/0">Todas</a></li>
-              </ul>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-    </div>
-    <div class="container-fluid guiaeventos lista-locales wrapper-absolute-80">
-        {{#each this}}
-            <div class="row cuadro" data-id="{{id_user}}" >
-                <div class="col-xs-12">                
-                    <div class="row">
-                        <div class="col-xs-5">
-                            <img src="http://test.mepwebs.com/uploads/medias/{{image}}" class="img-responsive" />
-                        </div>
-                        <div class="col-xs-7">
-                            <h4>{{first_name}}</h4>
-                            <p>{{CiudadEventor.nombre}}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        {{/each}}
-    </div>
-</script>
-    
-<script id="local-tpl" type="text/template">
-    <div class="header-50">
-        <div class="head_sup">
-            <a class="boton_atras pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>
-            <a class="boton_inicio pull-left"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a>
-            
-            <img src="logo.png" /> <h1>Pella de Ocio</h1>
-            
-            <div class="menu_drop dropdown pull-right">
-                <a class="dropdown-toggle" id="dropdownMenuMain" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuMain">
-                    <li><a class="link_locales" >Locales</a></li>
-                    <li><a class="link_eventos" >Eventos</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a class="menu_salir">Salir</a></li>
-                </ul>
-            </div>
-            <a class="pull-right" onclick="window.plugins.socialsharing.share('{{Eventor.first_name}}, pincha en el enlace para más info.', 'Pella de Ocio', null, 'http://test.mepwebs.com/es/')"><i class="fa fa-share-alt"></i></a>
-            <div class="clearfix"></div>
-        </div>
-    </div>
-    
-    <div class="container-fluid wrapper-absolute-50">
-        <div class="evento-detalle localDetails">
-            <!-- local-details-tpl -->
-        </div>
-        <div class="guiaeventos eventoslocal">
-            <h2>Próximos eventos</h2>
-            <!-- eventos -->
-        </div>
-    </div>
-</script>
-    
-<script id="local-details-tpl" type="text/template">
-    <div class="cuadro">
-        <div class="col-xs-12">
-            <h4><i class="fa fa-music"></i> {{Eventor.first_name}}</h4>
-        </div>
-        <div class="col-xs-12 col-sm-5 col-lg-6">
-            <img src="http://test.mepwebs.com/uploads/medias/{{Eventor.image}}" class="img-responsive" />
-        </div>
-        <div class="col-xs-12 col-sm-7 col-lg-6">
-            <div class="descr-evento">
-                {{{Eventor.resume}}}
-            </div>
-            <div class="datos-evento">
-                <h5>Cómo llegar</h5>
-                <p>{{Eventor.direccion}}. {{Eventor.CiudadEventor.nombre}}</p>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3500.378140521095!2d-13.937722999999998!3d28.678332999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xc47b5380ae93091%3A0x74506ba57e202fe1!2sRestaurante+Canela+Caf%C3%A9!5e0!3m2!1ses!2ses!4v1442594850296" frameborder="0" style="border:0" allowfullscreen></iframe>
-            </div>
-        </div> 
-    </div>
-</script>
-
     
 <script src="cordova.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3"></script>    
     
 <script src="lib/fastclick.js"></script>
 <script src="lib/handlebars.js"></script>

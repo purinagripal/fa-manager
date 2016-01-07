@@ -16,6 +16,47 @@ var NuevoEventoView = Backbone.View.extend({
         $("#addEventoForm").reset();
         console.log('resetea formulario');*/
         
+        var div_canvas = $('#mapa-evento', this.el)[0];
+        
+        var myLatlng = new google.maps.LatLng(28.6739669, -13.95281); 
+        window.mapOptions = { 
+            zoom: 16, 
+            center: myLatlng
+        }; 
+        window.map = new google.maps.Map(div_canvas, window.mapOptions);
+        window.marker = new google.maps.Marker({ 
+            position: myLatlng, 
+            map: window.map, 
+            title: 'titulo'
+        });
+        
+        google.maps.event.addListener(window.map, "click", function(event){
+           //MOSTRAR UNA ALERTA AL HACER CLICK AL MAPA
+           //EL EVENTO CLICK EN EL MAPA OFRECE UN PARAMETRO EVENT
+           //EL CUAL DEVUELVE LAS COORDENADAS DE DONDE SE HIZO CLICK! 
+           alert(event.latLng);
+            //Coordenadas
+           var coordenadas = event.latLng.toString();
+           
+           //remover los parentesis
+           coordenadas = coordenadas.replace("(", "");
+           coordenadas = coordenadas.replace(")", "");
+           
+           //coordenadas por separado
+           var lista = coordenadas.split(",");
+           
+           //Mostrar las coordenadas por separado
+//           alert("Las coordenada X es"+ lista[0]);
+//           alert("Las coordenada Y es"+ lista[1]);
+           
+           //variable para dirección, punto o coordenada
+           var direccion = new google.maps.LatLng(lista[0], lista[1]);
+            window.marker.setPosition(direccion);
+
+        });
+
+        
+        
         return this;
     },
     

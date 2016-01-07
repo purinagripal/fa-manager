@@ -213,6 +213,12 @@ a.menu_salir {
     margin-bottom: 450px;
 }
 
+#mapa-evento {
+    width:100%; 
+    height:200px;
+    margin-bottom: 15px;
+}
+
 
 .btn-pella {
   color: #fff;

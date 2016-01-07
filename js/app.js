@@ -4,14 +4,9 @@
     //Backbone.emulateHTTP = true;
 
     HomeView.prototype.template = Handlebars.compile($("#home-tpl").html());
-    NuevoEventoView.prototype.template = Handlebars.compile($("#nuevo-evento-tpl").html());
-    
     EventoListItemView.prototype.template = Handlebars.compile($("#eventos-list-tpl").html());
-    EventoView.prototype.template = Handlebars.compile($("#evento-tpl").html());
     
-    LocalesView.prototype.template = Handlebars.compile($("#locales-tpl").html());
-    LocalView.prototype.template = Handlebars.compile($("#local-tpl").html());
-    LocalDetailsView.prototype.template = Handlebars.compile($("#local-details-tpl").html());
+    NuevoEventoView.prototype.template = Handlebars.compile($("#nuevo-evento-tpl").html());
 
     /* ---------------------------------- Local Variables ---------------------------------- */
     var slider = new PageSlider($('body'));
@@ -29,8 +24,7 @@
             "":                 "home",
             "categ/:id_cat":    "categoria",
             "zona/:id_ciudad":  "ciudad",
-            "eventoadd":        "evento_add",
-            "eventos/:id":      "eventoDetails"
+            "eventoadd":        "evento_add"
         },
 
         home: function () {
@@ -146,16 +140,11 @@
             
             // vinculamos la coleccion this.eventosUser a la vista
             slider.slidePage(new NuevoEventoView({collection: this.eventosUser}).render().$el);
-        },
-
-        eventoDetails: function (id) {
-            //var employee = new Evento({id: id});
-            // coge el evento de la coleccion del HOME
-            this.evento = this.eventosUser.get(id);
-
-            $("html,body").scrollTop(0);
-            slider.slidePage(new EventoView({model: this.evento}).render().$el);
-        }
+            
+            // para que el mapa se vea más de una vez
+            google.maps.event.trigger(window.map, 'resize');
+            window.map.setCenter(window.mapOptions.center);
+        }       
         
         
     });
