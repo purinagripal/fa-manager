@@ -34,10 +34,11 @@ var NuevoEventoView = Backbone.View.extend({
            //MOSTRAR UNA ALERTA AL HACER CLICK AL MAPA
            //EL EVENTO CLICK EN EL MAPA OFRECE UN PARAMETRO EVENT
            //EL CUAL DEVUELVE LAS COORDENADAS DE DONDE SE HIZO CLICK! 
-           alert(event.latLng);
+           //alert(event.latLng);
             //Coordenadas
            var coordenadas = event.latLng.toString();
-           
+           alert(coordenadas);
+            
            //remover los parentesis
            coordenadas = coordenadas.replace("(", "");
            coordenadas = coordenadas.replace(")", "");
