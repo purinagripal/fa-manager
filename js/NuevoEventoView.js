@@ -7,7 +7,7 @@ var NuevoEventoView = Backbone.View.extend({
         var primerModelo = this.collection.at(0);
         this.$el.html(this.template(primerModelo.toJSON()));
         
-        console.log("auth user = " + window.auth_id_user);
+        console.log("auth user = " + window.localStorage.getItem('id_user'));
         console.log("coleccion en nuevo evento: ");
         console.log(JSON.stringify(this.collection.models));
         //$('#cargando').hide();
@@ -25,7 +25,7 @@ var NuevoEventoView = Backbone.View.extend({
         
         var myLatlng = new google.maps.LatLng(datosModelo.Eventor.lat, datosModelo.Eventor.long); 
         window.mapOptions = { 
-            zoom: 14, 
+            zoom: 17, 
             center: myLatlng
         }; 
         window.map = new google.maps.Map(div_canvas, window.mapOptions);
@@ -161,7 +161,8 @@ var NuevoEventoView = Backbone.View.extend({
                 data.append('fileDataUrl', dataUrl);
                 data.append('fileName', file['name']);
                 data.append('fileType', file['type']);
-                data.append('id_user', window.auth_id_user);
+                data.append('id_user', window.localStorage.getItem('id_user'));
+                //data.append('id_user', window.auth_id_user);
 
                 console.log('data formulario');
                 console.log(data);
@@ -231,8 +232,8 @@ var NuevoEventoView = Backbone.View.extend({
         console.log(datosForm);
                 
         
-        var datosAnadir = {id_user: window.auth_id_user};
-        //var datosAnadir = {id_user: 1, image:'imagen.jpg'};
+        var datosAnadir = {id_user: window.localStorage.getItem('id_user')};
+        //var datosAnadir = {id_user: window.auth_id_user};
         
         // añade a datosForm las propiedades de datosAñadir
         _.extend(datosForm, datosAnadir);
@@ -298,9 +299,9 @@ var NuevoEventoView = Backbone.View.extend({
     
     volver_inicio: function (event) {
         // resetea el historial
-        window.historial = [""];
+        window.historial = ["inicio"];
         console.log("window.historial: "+window.historial);
-        Backbone.history.navigate( "", {trigger: true} );
+        Backbone.history.navigate( "inicio", {trigger: true} );
     },
     
     volver_atras: function (event) {

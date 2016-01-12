@@ -24,11 +24,20 @@ var HomeView = Backbone.View.extend({
             case '1':
                 categ_txt = 'Música';
                 break;
-            case '4':
+            case '2':
+                categ_txt = 'Espectáculos';
+                break;
+            case '3':
                 categ_txt = 'Talleres';
                 break;
-            case '5':
+            case '4':
                 categ_txt = 'Charlas';
+                break;
+            case '5':
+                categ_txt = 'Deportes';
+                break;
+            case '6':
+                categ_txt = 'Para niños';
                 break;
             default:
                 categ_txt = 'Categoría';
@@ -43,6 +52,21 @@ var HomeView = Backbone.View.extend({
                 break;
             case '2':
                 ciudad_txt = 'Corralejo';
+                break;
+            case '3':
+                ciudad_txt = 'Cotillo';
+                break;
+            case '4':
+                ciudad_txt = 'La Oliva';
+                break;
+            case '5':
+                ciudad_txt = 'Tindaya';
+                break;
+            case '6':
+                ciudad_txt = 'Puerto del Rosario';
+                break;
+            case '7':
+                ciudad_txt = 'Puerto Lajas';
                 break;
             default:
                 ciudad_txt = 'Ciudad';
@@ -60,8 +84,9 @@ var HomeView = Backbone.View.extend({
 
     events: {
         "click .boton_add": "add_evento",
+        "click .editar_ev": "edit_evento",
         "click .eliminar_ev": "eliminar_evento",
-        "onBackKeyDown": "salir",
+        "click .menu_sesion": "cerrar_sesion",
         "click .menu_salir": "salir",
         //"click .row.cuadro": "ver_evento",
         "click .filt_categ": "filtra_categoria",
@@ -77,7 +102,7 @@ var HomeView = Backbone.View.extend({
         
         Backbone.history.navigate('categ/'+id_cat, {trigger: true});
         // borra del historial
-        Backbone.history.navigate('', {replace: true});
+        Backbone.history.navigate('inicio', {replace: true});
     },
     
     filtra_ciudad: function (event) {
@@ -86,24 +111,30 @@ var HomeView = Backbone.View.extend({
         
         //window.historial = "home";
         console.log("window.historial: "+window.historial);
+        
         // borra del historial
         Backbone.history.navigate('zona/'+id_ciudad, {trigger: true});
-        Backbone.history.navigate('', {replace: true});
+        Backbone.history.navigate('inicio', {replace: true});
     },
     
     add_evento: function (event) {
         console.log("add evento");
+        
+        // añade entrada al historial
+        window.historial.push('eventoadd');
+        
         Backbone.history.navigate('eventoadd', {trigger: true});
     },
     
-    /*ver_evento: function (event) {
-        //var id_evento = $(event.currentTarget).attr('data-id'); 
+    edit_evento: function (event) {
+        var id_evento = $(event.currentTarget).attr('data-id'); 
         
+        // añade entrada al historial
+        window.historial.push('eventoedit/'+id_evento);
         
         //console.log(event);
-        Backbone.history.navigate('eventos/1', {trigger: true});
-    },*/
-    
+        Backbone.history.navigate('eventoedit/'+id_evento, {trigger: true});
+    },
     
     eliminar_evento: function (event) {        
         var id_evento = $(event.currentTarget).attr('data-id'); 
@@ -134,6 +165,14 @@ var HomeView = Backbone.View.extend({
             var eventoborrar = this.collection.get(id_evento);
             eventoborrar.destroy();
         }
+    },
+    
+    cerrar_sesion: function (event) {
+        // limpiamos el localStorage
+        window.localStorage.clear();
+        // redireccionamos a login
+        window.historial = ["inicio"];
+        Backbone.history.navigate('', {trigger: true});
     },
 
     salir: function (event) {

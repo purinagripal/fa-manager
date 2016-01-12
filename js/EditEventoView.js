@@ -1,13 +1,13 @@
-var NuevoEventoView = Backbone.View.extend({
+var EditEventoView = Backbone.View.extend({
 
     initialize: function () {
     },
 
     render: function () {
-        var primerModelo = this.collection.at(0);
+        var primerModelo = this.model;
         this.$el.html(this.template(primerModelo.toJSON()));
         
-        console.log("auth user = " + window.localStorage.getItem('id_user'));
+        console.log("localStorage user = " + window.localStorage.getItem('id_user'));
         console.log("coleccion en nuevo evento: ");
         console.log(JSON.stringify(this.collection.models));
         //$('#cargando').hide();
@@ -15,6 +15,51 @@ var NuevoEventoView = Backbone.View.extend({
         /*// reseteamos el formulario (en firefox quedan datos de una vez para otra)
         $("#addEventoForm").reset();
         console.log('resetea formulario');*/
+        var datosModelo = primerModelo.attributes;
+        console.log("datosModelo");
+        console.log(datosModelo);
+        
+        
+        var div_canvas = $('#mapa-evento', this.el)[0];
+        
+        var myLatlng = new google.maps.LatLng(datosModelo.lat, datosModelo.long); 
+        window.mapOptions = { 
+            zoom: 17, 
+            center: myLatlng
+        }; 
+        window.map = new google.maps.Map(div_canvas, window.mapOptions);
+        window.marker = new google.maps.Marker({ 
+            position: myLatlng, 
+            map: window.map, 
+            title: 'titulo'
+        });
+        
+        google.maps.event.addListener(window.map, "click", function(event){
+            //Coordenadas
+            var coordenadas = event.latLng.toString();
+            //alert(coordenadas);
+
+            //remover los parentesis
+            coordenadas = coordenadas.replace("(", "");
+            coordenadas = coordenadas.replace(")", "");
+
+            //coordenadas por separado
+            var lista = coordenadas.split(",");
+
+            //Mostrar las coordenadas por separado
+//           alert("Las coordenada X es"+ lista[0]);
+//           alert("Las coordenada Y es"+ lista[1]);
+           
+            //variable para dirección, punto o coordenada
+            var direccion = new google.maps.LatLng(lista[0], lista[1]);
+            window.marker.setPosition(direccion);
+            // guarda los valores en los inputs
+            $("#lat").val(lista[0]);
+            $("#long").val(lista[1]);
+
+        });
+
+        
         
         return this;
     },
@@ -24,7 +69,8 @@ var NuevoEventoView = Backbone.View.extend({
         "click .link_create": "crea_model",
         //"submit #imageForm": "subir_imagen",
         "change #imageInput": "subir_imagen",
-        "submit #addEventoForm": "enviar_formulario",
+        "click #boton_guardar": "enviar_formulario",
+        //"submit #addEventoForm": "enviar_formulario",
         
         "click .link_locales": "ver_locales",
         "click .link_eventos": "volver_inicio",
@@ -38,11 +84,18 @@ var NuevoEventoView = Backbone.View.extend({
         
         console.log("subir imagen");
         
+        // muestra imagen subiendo...
+        $('#subiendo').show();
+        // deshabilita el boton guardar_evento hasta que la imagen se ha cargado
+        $('#boton_guardar').attr("disabled", true);
+        
         /////////////////
         var file = $("#imageForm :file")[0].files[0];
         console.log("file");
         console.log(file);
+        
         var dataUrl = "";
+        
         // Create an image
         var img = document.createElement("img");
         // Create a file reader
@@ -51,67 +104,69 @@ var NuevoEventoView = Backbone.View.extend({
         // Set the image once loaded into file reader
         reader.onload = function(e)
         {
+            // asociamos a la imagen el resultado de leer "file"
             img.src = e.target.result;
             
-            console.log("e.target.result");
-            console.log(e.target);
-            console.log("file type")
-            console.log(file['type']);
-    
-            var canvas = document.createElement("canvas");
-            //var canvas = $("<canvas>", {"id":"testing"})[0];
-            var ctx = canvas.getContext("2d");
-            ctx.drawImage(img, 0, 0);
-    
-            // Set Width and Height
-            var MAX_WIDTH = 400;
-            var width = img.width;
-            var height = img.height;
-    
+            console.log("dentro de reader.onload");
+            //console.log("e.target.result");
+            //console.log(e.target.result);
             
-            if (width > MAX_WIDTH) {
-                height *= MAX_WIDTH / width;
-                width = MAX_WIDTH;
-            }
-            
-            canvas.width = width;
-            canvas.height = height;
-            var ctx = canvas.getContext("2d");
-            ctx.drawImage(img, 0, 0, width, height);
-    
-            dataUrl = canvas.toDataURL(file['type']);
-            //dataUrl = canvas.toDataURL("image/jpeg");
-            document.getElementById('evento-img').src = dataUrl; 
-            console.log("dataURl");
-            console.log(dataUrl);
-            
-            
-            // Post the data
-//            var fd = new FormData();
-//            fd.append("image", dataUrl);
-//    
-//            var xhr = new XMLHttpRequest();
-//            xhr.upload.addEventListener("progress", uploadProgress, false);
-//            xhr.addEventListener("load", uploadComplete, false);
-//            xhr.addEventListener("error", uploadFailed, false);
-//            xhr.addEventListener("abort", uploadCanceled, false);
-//            xhr.open("POST", "savetofile.php");
-//            xhr.send(fd);
-            
-            
-            // solo si ha seleccionado un archivo
-            if (file) {
+            // esperamos que la imagen esté lista
+            img.onload = function () {
+                
+                console.log("dentro de img.onload");
+                
+                var canvas = document.createElement("canvas");
+                //var ctx = canvas.getContext("2d");
+                //ctx.drawImage(img, 0, 0);
+
+                // Set Width and Height
+                var MAX_WIDTH = 400;
+                var width = img.width;
+                var height = img.height;
+
+                console.log(width);
+                console.log(height);
+
+                if (width > MAX_WIDTH) {
+                    height *= MAX_WIDTH / width;
+                    width = MAX_WIDTH;
+                }
+
+                console.log(width);
+                console.log(height);
+
+                canvas.width = width;
+                canvas.height = height;
+                var ctx = canvas.getContext("2d");
+                ctx.drawImage(img, 0, 0, width, height);
+                var imageData = ctx.getImageData(0, 0, width, height);
+                console.log("imageData"); 
+                console.log(imageData);
+                
+                //var encoder = new JPEGEncoder();
+                //var imageData = encoder.encode(ctx.getImageData(0, 0, width, height), 100);
+
+                // parece que en android siempre genera un png
+                //dataUrl = canvas.toDataURL(file['type']);
+                dataUrl = canvas.toDataURL("image/png");
+
+                console.log("dataURl");
+                console.log(dataUrl);
+                document.getElementById('evento-img').src = dataUrl; 
+
+                // datos para enviar
                 var data = new FormData();
                 data.append('fileDataUrl', dataUrl);
                 data.append('fileName', file['name']);
                 data.append('fileType', file['type']);
-                data.append('id_user', window.auth_id_user);
+                data.append('id_user', window.localStorage.getItem('id_user'));
+                //data.append('id_user', window.auth_id_user);
 
                 console.log('data formulario');
                 console.log(data);
 
-                // muestra imagen subiendo...
-                $('#subiendo').show();
+                
 
                 $.ajax({
                     url: 'http://test.mepwebs.com/app_upload',
@@ -126,24 +181,29 @@ var NuevoEventoView = Backbone.View.extend({
                         // data.file solo funciona en servidor (devuelve objeto)
                         console.log(data);
                         console.log(data.file);
-
+    
                         $('#subiendo').hide();
-
+                        $('#subidaok').show();
+                        $('#boton_guardar').attr("disabled", false);
+    
                         // cambiamos la imagen q se ve
                         //$('#evento-img').attr('src', 'http://localhost/fuerteagenda_cms/uploads/medias/'+data.file);
                         //$('#evento-img').attr('src', 'http://test.mepwebs.com/uploads/medias/'+data.file);
-
+    
                         // cambiamos el input image para q se guarde en bbdd con el evento
                         $("#image").val(data.file);
                     },
                     error: function(data){
                         $('#subiendo').hide();
+                        $('#boton_guardar').disabled = false;
                         alert('Error en la subida');
                     }
                 });
-
+                
             }
             
+
+    
         }
         // Load files into file reader
         reader.readAsDataURL(file);
@@ -170,21 +230,25 @@ var NuevoEventoView = Backbone.View.extend({
         console.log('datos del formulario');
         console.log(datosForm);
                 
-        
-        var datosAnadir = {id_user: window.auth_id_user};
-        //var datosAnadir = {id_user: 1, image:'imagen.jpg'};
+        var datosAnadir = {id_user: window.localStorage.getItem('id_user')};
+        //var datosAnadir = {id_user: window.auth_id_user};
         
         // añade a datosForm las propiedades de datosAñadir
         _.extend(datosForm, datosAnadir);
         //console.log(datosForm);
         
-        // creamos evento con datos del formulario
-        var evento = new Evento(datosForm);
+//        console.log("coleccion antes de añadir evento");
+//        console.log(JSON.stringify(this.collection.models));
+        
+        
+        // modificamos evento con datos del formulario
+        var evento = this.model.set(datosForm);
+        //console.log(JSON.stringify(evento));
         
         // validamos el evento
         if (evento.isValid()) {
             // añadimos a coleccion y guardamos el evento
-            this.collection.add(evento);
+            //this.collection.add(evento);
             var coleccionEventos = this.collection;
 
             // muestra imagen cargando...
@@ -203,12 +267,6 @@ var NuevoEventoView = Backbone.View.extend({
                     console.log(response);
                     console.log("succes save");
 
-                    /*setTimeout(function() {
-                        // resetea el historial
-                        window.historial = [""];
-                        Backbone.history.navigate( "", {trigger: true} );
-                    }, 5000);*/
-
                     // lo ordeno una vez tengo respuesta del servidor
                     coleccionEventos.sort();
                     
@@ -226,21 +284,34 @@ var NuevoEventoView = Backbone.View.extend({
                 },
                 wait: true
             });
+            
           
         } else {
             // avisamos de que faltan datos
             alert(evento.validationError);
         }
         
+        
+        //var evento = new Evento({id_evento:"5", id_categoria:"3", date:'2016-10-10'});
+        //this.collection.add(evento);
+//        this.model.set(datosForm);
+//        console.log("coleccion despues de añadir evento");
+//        console.log(JSON.stringify(this.collection.models));
+//        this.model.save({                     // se genera GET /usuarios/1
+//            success:function(){
+//                alert(JSON.stringify(evento.attributes)); // imprime {"id":1, "nombre": "Alfonso", "apellidos": "Marin Marin"}
+//            }
+//        });
+//        
         // para que el formulario no recargue la página
         return false;
     },
     
     volver_inicio: function (event) {
         // resetea el historial
-        window.historial = [""];
+        window.historial = ["inicio"];
         console.log("window.historial: "+window.historial);
-        Backbone.history.navigate( "", {trigger: true} );
+        Backbone.history.navigate( "inicio", {trigger: true} );
     },
     
     volver_atras: function (event) {

@@ -3,16 +3,18 @@
     
     //Backbone.emulateHTTP = true;
 
+    LoginView.prototype.template = Handlebars.compile($("#login-tpl").html());
     HomeView.prototype.template = Handlebars.compile($("#home-tpl").html());
     EventoListItemView.prototype.template = Handlebars.compile($("#eventos-list-tpl").html());
     
     NuevoEventoView.prototype.template = Handlebars.compile($("#nuevo-evento-tpl").html());
+    EditEventoView.prototype.template = Handlebars.compile($("#edit-evento-tpl").html());
 
     /* ---------------------------------- Local Variables ---------------------------------- */
     var slider = new PageSlider($('body'));
     
-    window.historial = [""];
-    window.auth_id_user = "2";
+    window.historial = ["inicio"];
+    //window.auth_id_user = "2";
 
     var homeView;
     var localesView;
@@ -21,10 +23,17 @@
     var AppRouter = Backbone.Router.extend({
 
         routes: {
-            "":                 "home",
-            "categ/:id_cat":    "categoria",
-            "zona/:id_ciudad":  "ciudad",
-            "eventoadd":        "evento_add"
+            "":                     "login",
+            "inicio":               "home",
+            "categ/:id_cat":        "categoria",
+            "zona/:id_ciudad":      "ciudad",
+            "eventoadd":            "evento_add",
+            "eventoedit/:id_evento":"evento_edit"
+        },
+        
+        login: function () {
+            // vinculamos la coleccion this.eventosUser a la vista
+            slider.slidePage(new LoginView().render().$el);
         },
 
         home: function () {
@@ -39,14 +48,10 @@
                         console.log("antes del fetch");
                         // filtra los eventos del user (para ponerlos en el model)
                         //guardaThis.eventosUser = new EventoCollection( guardaThis.eventosList.where({id_user: "1"}) );
-                        guardaThis.eventosUser = new EventoCollection( guardaThis.eventosList.where({id_user: window.auth_id_user}) );
+                        guardaThis.eventosUser = new EventoCollection( guardaThis.eventosList.where({id_user: window.localStorage.getItem('id_user')}) );
                         
 
-                        console.log( 'fetch done, esconde splashscreen' );
-                        // ocultar pantalla presentacion 
-                        setTimeout(function() {
-                            navigator.splashscreen.hide();
-                        }, 1500);
+                       
                     
                         console.log("collection en app");
                         console.log( guardaThis.eventosUser );
@@ -144,7 +149,22 @@
             // para que el mapa se vea más de una vez
             google.maps.event.trigger(window.map, 'resize');
             window.map.setCenter(window.mapOptions.center);
-        }       
+        },
+        
+        evento_edit: function (id_evento) {
+            // reiniciamos scroll
+            $("html,body").scrollTop(0);
+            
+            // coge el evento de la coleccion del HOME
+            this.eventoEdit = this.eventosUser.get(id_evento);
+            
+            // vinculamos la coleccion this.eventosUser a la vista
+            slider.slidePage(new EditEventoView({collection: this.eventosUser, model: this.eventoEdit}).render().$el);
+            
+            // para que el mapa se vea más de una vez
+            google.maps.event.trigger(window.map, 'resize');
+            window.map.setCenter(window.mapOptions.center);
+        }
         
         
     });
@@ -184,14 +204,25 @@
         // Now safe to use device APIs
         document.addEventListener("backbutton", onBackKeyDown, false);
         
+        console.log( 'fetch done, esconde splashscreen' );
+        // ocultar pantalla presentacion 
+        setTimeout(function() {
+            navigator.splashscreen.hide();
+        }, 1500);
+        
     };
     
     function onBackKeyDown() {
+        // si está en home, sale de la app
+        if(window.historial == ["inicio"]) {
+            console.log("sale de la app");
+            navigator.app.exitApp();
+        }
+        
         // vuelve al home
         // reinicia historial
-        window.historial = [""];
-        
-        Backbone.history.navigate('', {trigger: true});
+        window.historial = ["inicio"];
+        Backbone.history.navigate('inicio', {trigger: true});
     };
     
 
