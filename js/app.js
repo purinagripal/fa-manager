@@ -213,8 +213,9 @@
     };
     
     function onBackKeyDown() {
+        console.log("length del historial: "+window.historial.length);
         // si está en home, sale de la app
-        if(window.historial.lenght == 1) {
+        if(window.historial.length == 1) {
             console.log("sale de la app");
             navigator.app.exitApp();
         } else {
