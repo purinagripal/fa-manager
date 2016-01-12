@@ -271,8 +271,8 @@ var EditEventoView = Backbone.View.extend({
                     coleccionEventos.sort();
                     
                     // resetea el historial
-                    window.historial = [""];
-                    Backbone.history.navigate( "", {trigger: true} );
+                    window.historial = ["inicio"];
+                    Backbone.history.navigate( "inicio", {trigger: true} );
                 },
                 error: function(model, response) {
                     console.log("error save");

@@ -214,9 +214,12 @@
     
     function onBackKeyDown() {
         // si está en home, sale de la app
-        if(window.historial == ["inicio"]) {
+        if(window.historial.lenght == 1) {
             console.log("sale de la app");
             navigator.app.exitApp();
+        } else {
+            console.log("boton atras - no sale de la app");
+            console.log(window.historial);
         }
         
         // vuelve al home

@@ -5,8 +5,8 @@ var LoginView = Backbone.View.extend({
         
         // si hay datos de usuario salta el formulario de login
         if(window.localStorage.getItem('usuario')){
-            console.log("usuario: "+window.localStorage.getItem('usuario'));
-            console.log("clave: "+window.localStorage.getItem('passwd'));
+            console.log("usuario localStorage: "+window.localStorage.getItem('usuario'));
+            console.log("clave localStorage: "+window.localStorage.getItem('passwd'));
             
             // envia datos al servidor para ver si el usuario esta vigente
             var datosActualizados = new FormData();
