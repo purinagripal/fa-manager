@@ -3,8 +3,13 @@ var LoginView = Backbone.View.extend({
     initialize:function () {
         console.log('initialize de loginView');
         
+        this.$el.html(this.template());
+        
         // si hay datos de usuario salta el formulario de login
         if(window.localStorage.getItem('usuario')){
+            // oculta formulario
+            $('#login-formulario', this.el).hide();
+            
             console.log("usuario localStorage: "+window.localStorage.getItem('usuario'));
             console.log("clave localStorage: "+window.localStorage.getItem('passwd'));
             
@@ -19,13 +24,13 @@ var LoginView = Backbone.View.extend({
             
         } else {
             console.log("no localstorage");
+            $('#login-access', this.el).hide();
         }
     },
 
     render:function () {
         console.log('render de loginView');
-                
-        this.$el.html(this.template());
+        //this.$el.html(this.template()); // en initialize para poder preparar la vista
         return this;
     },
 
@@ -34,6 +39,10 @@ var LoginView = Backbone.View.extend({
     },
     
     datos_formulario: function (event) {
+        // al enviar el formulario muestra conectando
+        $('#login-formulario').hide();
+        $('#login-access').show();
+        
         console.log("datos formulario");
         var datosFormulario = $("#login-form").serializeObject();
         console.log(datosFormulario);
@@ -82,7 +91,13 @@ var LoginView = Backbone.View.extend({
                     // redireccionamos a inicio
                     Backbone.history.navigate('inicio', {trigger: true});
                 } else {
+                    // usuario no vigente o incorrecto
                     window.localStorage.setItem('id_user', 0);
+                    
+                    // vuelve a mostrar el formulario
+                    $('#login-formulario').show();
+                    $('#login-access').hide();
+                    
                     // usuario no vigente o incorrecto
                     if(data.id_user!=0){
                         alert("El usuario está caducado, póngase en contacto con nosotros para renovar su usuario en info@pelladeocio.com");
