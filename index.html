@@ -51,7 +51,7 @@
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuMain">
                     <li><a class="menu_perfil" >Perfil</a></li>
-                    <li><a class="menu_eventos" href="#">Eventos</a></li>
+                    <li><a class="menu_eventos" >Eventos</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a class="menu_sesion" >Cerrar sesión</a></li>
                     <li><a class="menu_salir">Salir</a></li>
@@ -153,8 +153,8 @@
         <div class="row cuadro">
             <form id="imageForm" name="imageForm" class="formulario" enctype="multipart/form-data" >
                 <div class="col-xs-12">
-                    <img id="evento-img" src="http://test.mepwebs.com/uploads/medias/{{Eventor.image}}" class="img-responsive" />
-                    <!--<img id="evento-img" src="http://localhost/fuerteagenda_cms/uploads/medias/{{Eventor.image}}" class="img-responsive" />-->
+                    <img id="evento-img" src="http://test.mepwebs.com/uploads/medias/{{User.image}}" class="img-responsive" />
+                    <!--<img id="evento-img" src="http://localhost/fuerteagenda_cms/uploads/medias/{{User.image}}" class="img-responsive" />-->
                 </div>
                 
                 <div class="col-xs-5">
@@ -178,7 +178,7 @@
             
             
             <form id="addEventoForm" name="addEventoForm" class="formulario" enctype="multipart/form-data" >
-                <input type="hidden" name="image" id="image" value="{{Eventor.image}}" />
+                <input type="hidden" name="image" id="image" value="{{User.image}}" />
                 <div class="col-xs-12">
                     Categoría:
                     <select name="id_categoria" class="form-control" tabindex=1 >
@@ -202,19 +202,19 @@
                     
                     Título: <input type="text" name="title_es" tabindex=4 value="" />
                     Descripción: <textarea name="descripcion_es" rows="2" placeholder="Message" tabindex=5 ></textarea>
-                    Dirección: <input type="text" name="direccion" tabindex=6 value="{{Eventor.direccion}}" />
+                    Dirección: <input type="text" name="direccion" tabindex=6 value="{{User.direccion}}" />
                     <select name="id_ciudad" class="form-control" tabindex=7 >
-                            <option value="2" {{#equal Eventor.id_ciudad 2}}selected{{/equal}}>Corralejo</option>
-                            <option value="3" {{#equal Eventor.id_ciudad 3}}selected{{/equal}}>Cotillo</option>
-                            <option value="4" {{#equal Eventor.id_ciudad 4}}selected{{/equal}}>La Oliva</option>
-                            <option value="1" {{#equal Eventor.id_ciudad 1}}selected{{/equal}}>Lajares</option>
-                            <option value="6" {{#equal Eventor.id_ciudad 6}}selected{{/equal}}>Puerto del Rosario</option>
-                            <option value="7" {{#equal Eventor.id_ciudad 7}}selected{{/equal}}>Puerto Lajas</option>
-                            <option value="5" {{#equal Eventor.id_ciudad 5}}selected{{/equal}}>Tindaya</option>
+                            <option value="2" {{#equal User.id_ciudad 2}}selected{{/equal}}>Corralejo</option>
+                            <option value="3" {{#equal User.id_ciudad 3}}selected{{/equal}}>Cotillo</option>
+                            <option value="4" {{#equal User.id_ciudad 4}}selected{{/equal}}>La Oliva</option>
+                            <option value="1" {{#equal User.id_ciudad 1}}selected{{/equal}}>Lajares</option>
+                            <option value="6" {{#equal User.id_ciudad 6}}selected{{/equal}}>Puerto del Rosario</option>
+                            <option value="7" {{#equal User.id_ciudad 7}}selected{{/equal}}>Puerto Lajas</option>
+                            <option value="5" {{#equal User.id_ciudad 5}}selected{{/equal}}>Tindaya</option>
                     </select>
                     <div id="mapa-evento"></div>
-                    <input type="hidden" name="lat" id="lat" value="{{Eventor.lat}}" />
-                    <input type="hidden" name="long" id="long" value="{{Eventor.long}}" />
+                    <input type="hidden" name="lat" id="lat" value="{{User.lat}}" />
+                    <input type="hidden" name="long" id="long" value="{{User.long}}" />
                     Horario (info extra): <input type="text" name="horario_es" tabindex=8 />
                     Precio: <input type="text" name="precio_es" tabindex=9 />
                     <!--<input type="submit" value="Submit" tabindex=10 ></input>-->
@@ -333,6 +333,95 @@
             
         </div>
     </div>
+</script>    
+    
+<script id="edit-perfil-tpl" type="text/template">
+    <div class="header-50">
+        <div class="head_sup">
+            <a class="boton_atras pull-left"><i class="fa fa-arrow-left"></i></a>
+            <a class="boton_inicio pull-left"><i class="fa fa-home"></i></a>
+        
+            <img src="logo.png" /> <h1>Pella de Ocio</h1>
+            
+            <div class="menu_drop dropdown pull-right">
+                <a class="dropdown-toggle" id="dropdownMenuMain" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuMain">
+                    <li><a class="link_locales" >Locales</a></li>
+                    <li><a class="link_eventos" >Eventos</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a class="menu_salir">Salir</a></li>
+                </ul>
+            </div>
+                        
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    
+    <div id="cargando" class="container wrapper-absolute-50">
+        <div class="row cuadro">
+            <p>Guardando perfil...</p>
+            <p><img src="assets/img/saving.gif" /></p>
+        </div>
+    </div>
+    
+    <div id="form_addevento" class="container wrapper-absolute-50 evento-detalle">
+        <div class="row cuadro">
+            <form id="imageForm" name="imageForm" class="formulario" enctype="multipart/form-data" >
+                <div class="col-xs-12">
+                    <img id="evento-img" src="http://test.mepwebs.com/uploads/medias/{{image}}" class="img-responsive" />
+                    <!--<img id="evento-img" src="http://localhost/fuerteagenda_cms/uploads/medias/{{image}}" class="img-responsive" />-->
+                </div>
+                
+                <div class="col-xs-5">
+                    Cambiar imagen:
+                </div>
+                <div class="col-xs-7">
+                    <input id="imageInput" type="file" name="img_file" accept="image/*" />
+                </div>
+                
+                <div class="col-xs-12">
+                    <div id="subiendo">
+                        <img src="assets/img/upload.gif" />
+                        <p>Subiendo imagen...</p>
+                    </div>
+                    <div id="subidaok">
+                        <p>Subida completada</p>
+                    </div>
+                </div>
+                
+            </form>
+            
+            
+            <form id="addEventoForm" name="addEventoForm" class="formulario" enctype="multipart/form-data" >
+                <input type="hidden" name="id_user" id="id_user" value="{{id_user}}" />
+                <input type="hidden" name="image" id="image" value="{{image}}" />
+                <div class="col-xs-12">
+                    <input type="hidden" name="id_content_es" id="id_content_es" value="{{id_evecontent}}" />
+                    Nombre: <input type="text" name="first_name" tabindex=1 value="{{first_name}}" />
+                    Descripción: <textarea name="resume" rows="2" placeholder="Descripción" tabindex=2 >{{resume}}</textarea>
+                    Dirección: <input type="text" name="direccion" tabindex=3 value="{{direccion}}" />
+                    <select name="id_ciudad" class="form-control" tabindex=4 >
+                            <option value="2" {{#equal id_ciudad 2}}selected{{/equal}}>Corralejo</option>
+                            <option value="3" {{#equal id_ciudad 3}}selected{{/equal}}>Cotillo</option>
+                            <option value="4" {{#equal id_ciudad 4}}selected{{/equal}}>La Oliva</option>
+                            <option value="1" {{#equal id_ciudad 1}}selected{{/equal}}>Lajares</option>
+                            <option value="6" {{#equal id_ciudad 6}}selected{{/equal}}>Puerto del Rosario</option>
+                            <option value="7" {{#equal id_ciudad 7}}selected{{/equal}}>Puerto Lajas</option>
+                            <option value="5" {{#equal id_ciudad 5}}selected{{/equal}}>Tindaya</option>
+                    </select>
+                    <div id="mapa-evento"></div>
+                    <input type="hidden" name="lat" id="lat" value="{{lat}}" />
+                    <input type="hidden" name="long" id="long" value="{{long}}" />
+                    Email: <input type="email" name="email" tabindex=5 value="{{email}}" />
+                    <!--<input type="submit" value="Submit" tabindex=10 ></input>-->
+                    <a id="boton_guardar" class="btn btn-pella btn-lg btn-block" >Guardar perfil</a>
+                </div>
+            </form>
+            
+        </div>
+    </div>
 </script>        
     
     
@@ -355,6 +444,7 @@
 <script src="js/EventoListItemView.js"></script>       
 <script src="js/NuevoEventoView.js"></script>
 <script src="js/EditEventoView.js"></script>
+<script src="js/EditPerfilView.js"></script>    
 <script src="js/app.js"></script>
 
 </body>

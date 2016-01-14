@@ -86,6 +86,7 @@ var HomeView = Backbone.View.extend({
         "click .boton_add": "add_evento",
         "click .editar_ev": "edit_evento",
         "click .eliminar_ev": "eliminar_evento",
+        "click .menu_perfil": "editar_perfil",
         "click .menu_sesion": "cerrar_sesion",
         "click .menu_salir": "salir",
         //"click .row.cuadro": "ver_evento",
@@ -165,6 +166,13 @@ var HomeView = Backbone.View.extend({
             var eventoborrar = this.collection.get(id_evento);
             eventoborrar.destroy();
         }
+    },
+    
+    editar_perfil: function (event) {
+        // añade entrada al historial
+        window.historial.push('perfiledit');
+        // redirecciona
+        Backbone.history.navigate('perfiledit', {trigger: true});
     },
     
     cerrar_sesion: function (event) {

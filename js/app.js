@@ -4,11 +4,14 @@
     //Backbone.emulateHTTP = true;
 
     LoginView.prototype.template = Handlebars.compile($("#login-tpl").html());
+    
     HomeView.prototype.template = Handlebars.compile($("#home-tpl").html());
     EventoListItemView.prototype.template = Handlebars.compile($("#eventos-list-tpl").html());
     
     NuevoEventoView.prototype.template = Handlebars.compile($("#nuevo-evento-tpl").html());
     EditEventoView.prototype.template = Handlebars.compile($("#edit-evento-tpl").html());
+    
+    EditPerfilView.prototype.template = Handlebars.compile($("#edit-perfil-tpl").html());
 
     /* ---------------------------------- Local Variables ---------------------------------- */
     var slider = new PageSlider($('body'));
@@ -28,7 +31,8 @@
             "categ/:id_cat":        "categoria",
             "zona/:id_ciudad":      "ciudad",
             "eventoadd":            "evento_add",
-            "eventoedit/:id_evento":"evento_edit"
+            "eventoedit/:id_evento":"evento_edit",
+            "perfiledit":           "perfil_edit"
         },
         
         login: function () {
@@ -40,6 +44,11 @@
             // Since the home view never changes, we instantiate it and render it only once
             if (!homeView) {
                 this.eventosList = new EventoCollection();
+                this.userModel = new Eventor({id_user: window.localStorage.getItem('id_user')});
+                this.userModel.fetch();
+                console.log("userModel");
+                console.log(this.userModel);
+                
                 
                 // para acceder a this dentro del done()
                  var guardaThis = this;
@@ -143,8 +152,12 @@
             // reiniciamos scroll
             $("html,body").scrollTop(0);
             
+            console.log('user model al llamar eventoadd');
+            console.log(this.userModel);
+            
             // vinculamos la coleccion this.eventosUser a la vista
-            slider.slidePage(new NuevoEventoView({collection: this.eventosUser}).render().$el);
+            //slider.slidePage(new NuevoEventoView(options, user_model).render().$el);
+            slider.slidePage(new NuevoEventoView({collection: this.eventosUser}, this.userModel).render().$el);
             
             // para que el mapa se vea más de una vez
             google.maps.event.trigger(window.map, 'resize');
@@ -160,6 +173,18 @@
             
             // vinculamos la coleccion this.eventosUser a la vista
             slider.slidePage(new EditEventoView({collection: this.eventosUser, model: this.eventoEdit}).render().$el);
+            
+            // para que el mapa se vea más de una vez
+            google.maps.event.trigger(window.map, 'resize');
+            window.map.setCenter(window.mapOptions.center);
+        },
+        
+        perfil_edit: function () {
+            // reiniciamos scroll
+            $("html,body").scrollTop(0);
+            
+            // pasamos el modelo Eventor a la vista
+            slider.slidePage(new EditPerfilView({model: this.userModel}).render().$el);
             
             // para que el mapa se vea más de una vez
             google.maps.event.trigger(window.map, 'resize');
@@ -204,11 +229,11 @@
         // Now safe to use device APIs
         document.addEventListener("backbutton", onBackKeyDown, false);
         
-        console.log( 'fetch done, esconde splashscreen' );
         // ocultar pantalla presentacion 
         setTimeout(function() {
             navigator.splashscreen.hide();
-        }, 1500);
+            console.log( 'esconde splashscreen' );
+        }, 2000);
         
     };
     

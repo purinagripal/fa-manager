@@ -1,36 +1,26 @@
-var NuevoEventoView = Backbone.View.extend({
-    
-    initialize: function (options, user_model) {
-        //console.log('PARAMETROS');
-        //console.log(this);
-        this.userModel = user_model;
+var EditPerfilView = Backbone.View.extend({
+
+    initialize: function () {
     },
 
     render: function () {
-        //console.log('user model dentro de nuevo evento');
-        //console.log(this.userModel);
+        var primerModelo = this.model;
+        this.$el.html(this.template(primerModelo.toJSON()));
         
-        // pasa los datos del User a la plantilla
-        this.$el.html(this.template({User: this.userModel.toJSON()}));
-        
-        console.log("auth user = " + window.localStorage.getItem('id_user'));
-        console.log("coleccion en nuevo evento: ");
-        console.log(JSON.stringify(this.collection.models));
-        //$('#cargando').hide();
+        console.log("localStorage user = " + window.localStorage.getItem('id_user'));
         
         /*// reseteamos el formulario (en firefox quedan datos de una vez para otra)
         $("#addEventoForm").reset();
         console.log('resetea formulario');*/
         
-        var datosUser = this.userModel.attributes;
-        console.log("datosUser");
-        console.log(datosUser);
-        console.log(datosUser.lat);
-        console.log(datosUser.long);
+        var datosModelo = primerModelo.attributes;
+        console.log("datosModelo");
+        console.log(datosModelo);
+        
         
         var div_canvas = $('#mapa-evento', this.el)[0];
         
-        var myLatlng = new google.maps.LatLng(datosUser.lat, datosUser.long); 
+        var myLatlng = new google.maps.LatLng(datosModelo.lat, datosModelo.long); 
         window.mapOptions = { 
             zoom: 17, 
             center: myLatlng
@@ -216,6 +206,15 @@ var NuevoEventoView = Backbone.View.extend({
         // Load files into file reader
         reader.readAsDataURL(file);
       
+        /////////////////
+        
+        // file del formulario
+//        var fileform = $("#imageForm :file")[0].files[0];
+//        console.log('imagen del formulario');
+//        console.log(fileform);
+        
+        
+        
         // para que el formulario no recargue la página
         return false;
     },
@@ -230,22 +229,13 @@ var NuevoEventoView = Backbone.View.extend({
         console.log(datosForm);
                 
         
-        var datosAnadir = {id_user: window.localStorage.getItem('id_user')};
-        //var datosAnadir = {id_user: window.auth_id_user};
+        // modificamos User con datos del formulario
+        var perfilUser = this.model.set(datosForm);
+        //console.log(JSON.stringify(perfilUser));
         
-        // añade a datosForm las propiedades de datosAñadir
-        _.extend(datosForm, datosAnadir);
-        //console.log(datosForm);
-        
-        // creamos evento con datos del formulario
-        var evento = new Evento(datosForm);
-        
-        // validamos el evento
-        if (evento.isValid()) {
-            // añadimos a coleccion y guardamos el evento
-            this.collection.add(evento);
-            var coleccionEventos = this.collection;
-
+        // validamos el perfilUser
+        if (perfilUser.isValid()) {
+            
             // muestra imagen cargando...
             // cambia el contenido html
             //$("#carga").html('<p>Cargando...<img src="assets/ajax-loader.gif" /></p>');
@@ -254,23 +244,14 @@ var NuevoEventoView = Backbone.View.extend({
             $('#form_addevento').hide();
             $('#cargando').show();
             
-            // guardamos el evento (sync con el servidor)
-            // save genera POST /appeventos
-            evento.save(null, {
+            // guardamos el perfilUser (sync con el servidor)
+            // save genera POST /appperfilUsers
+            perfilUser.save(null, {
                 success:function(model, response){
                     console.log(model);
                     console.log(response);
                     console.log("succes save");
 
-                    /*setTimeout(function() {
-                        // resetea el historial
-                        window.historial = [""];
-                        Backbone.history.navigate( "", {trigger: true} );
-                    }, 5000);*/
-
-                    // lo ordeno una vez tengo respuesta del servidor
-                    coleccionEventos.sort();
-                    
                     // resetea el historial
                     window.historial = ["inicio"];
                     Backbone.history.navigate( "inicio", {trigger: true} );
@@ -280,17 +261,28 @@ var NuevoEventoView = Backbone.View.extend({
                     console.log(model);
                     console.log(response);
 
-                    // eliminamos el evento de la colección ya que no se ha guardado en server
-                    coleccionEventos.remove(evento);
                 },
                 wait: true
             });
+            
           
         } else {
             // avisamos de que faltan datos
-            alert(evento.validationError);
+            alert(perfilUser.validationError);
         }
         
+        
+        //var evento = new Evento({id_evento:"5", id_categoria:"3", date:'2016-10-10'});
+        //this.collection.add(evento);
+//        this.model.set(datosForm);
+//        console.log("coleccion despues de añadir evento");
+//        console.log(JSON.stringify(this.collection.models));
+//        this.model.save({                     // se genera GET /usuarios/1
+//            success:function(){
+//                alert(JSON.stringify(evento.attributes)); // imprime {"id":1, "nombre": "Alfonso", "apellidos": "Marin Marin"}
+//            }
+//        });
+//        
         // para que el formulario no recargue la página
         return false;
     },

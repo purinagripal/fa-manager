@@ -58,6 +58,14 @@ var EventoCollection = Backbone.Collection.extend({
 
 });
 
+var Eventor = Backbone.Model.extend({
+    idAttribute: 'id_user',
+    
+    //urlRoot: "http://localhost/fuerteagenda_cms/appusers"    
+    urlRoot: "http://test.mepwebs.com/appusers"    
+    
+});
+
 
 function validarFechaAMD(fecha) {
     // esta debería validarse true siempre que se use html5
