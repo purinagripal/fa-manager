@@ -78,7 +78,7 @@ var NuevoEventoView = Backbone.View.extend({
         //"submit #imageForm": "subir_imagen",
         "change #imageInput": "subir_imagen",
         "click #boton_guardar": "enviar_formulario",
-        //"submit #addEventoForm": "enviar_formulario",
+        "submit #addEventoForm": "enviar_formulario",
         
         "click .link_locales": "ver_locales",
         "click .link_eventos": "volver_inicio",

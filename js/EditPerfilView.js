@@ -10,7 +10,7 @@ var EditPerfilView = Backbone.View.extend({
         console.log("localStorage user = " + window.localStorage.getItem('id_user'));
         
         /*// reseteamos el formulario (en firefox quedan datos de una vez para otra)
-        $("#addEventoForm").reset();
+        $("#editPerfilForm").reset();
         console.log('resetea formulario');*/
         
         var datosModelo = primerModelo.attributes;
@@ -68,7 +68,7 @@ var EditPerfilView = Backbone.View.extend({
         //"submit #imageForm": "subir_imagen",
         "change #imageInput": "subir_imagen",
         "click #boton_guardar": "enviar_formulario",
-        //"submit #addEventoForm": "enviar_formulario",
+        "submit #editPerfilForm": "enviar_formulario",
         
         "click .link_locales": "ver_locales",
         "click .link_eventos": "volver_inicio",
@@ -223,7 +223,7 @@ var EditPerfilView = Backbone.View.extend({
         console.log("enviar formulario");
         
         // array con los datos del formulario
-        var datosForm = $("#addEventoForm").serializeObject();
+        var datosForm = $("#editPerfilForm").serializeObject();
         
         if( datosForm.contrasena_1 != '' ) {
             // añade a datosForm el nuevo password
@@ -275,19 +275,7 @@ var EditPerfilView = Backbone.View.extend({
             // avisamos de que faltan datos
             alert(perfilUser.validationError);
         }
-        
-        
-        //var evento = new Evento({id_evento:"5", id_categoria:"3", date:'2016-10-10'});
-        //this.collection.add(evento);
-//        this.model.set(datosForm);
-//        console.log("coleccion despues de añadir evento");
-//        console.log(JSON.stringify(this.collection.models));
-//        this.model.save({                     // se genera GET /usuarios/1
-//            success:function(){
-//                alert(JSON.stringify(evento.attributes)); // imprime {"id":1, "nombre": "Alfonso", "apellidos": "Marin Marin"}
-//            }
-//        });
-//        
+    
         // para que el formulario no recargue la página
         return false;
     },
