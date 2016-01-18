@@ -225,15 +225,20 @@ var EditPerfilView = Backbone.View.extend({
         // array con los datos del formulario
         var datosForm = $("#addEventoForm").serializeObject();
         
+        if( datosForm.contrasena_1 != '' ) {
+            // añade a datosForm el nuevo password
+            var datosAnadir = {passwd: datosForm.contrasena_1 };
+            _.extend(datosForm, datosAnadir);
+        }
         console.log('datos del formulario');
         console.log(datosForm);
-                
         
         // modificamos User con datos del formulario
         var perfilUser = this.model.set(datosForm);
         //console.log(JSON.stringify(perfilUser));
         
         // validamos el perfilUser
+        // si contrasena_1 != contrasena_2 no será valido
         if (perfilUser.isValid()) {
             
             // muestra imagen cargando...

@@ -19,7 +19,7 @@ var LoginView = Backbone.View.extend({
             datosActualizados.append('contrasena', window.localStorage.getItem('passwd'));
             console.log("datosActualizados");
             console.log(datosActualizados);
-
+            
             this.autenticar_svr(datosActualizados);
             
         } else {
@@ -47,6 +47,9 @@ var LoginView = Backbone.View.extend({
         var datosFormulario = $("#login-form").serializeObject();
         console.log(datosFormulario);
         
+        window.localStorage.setItem('usuario', datosFormulario['usuario']);
+        window.localStorage.setItem('passwd', md5('pella'+datosFormulario['clave']));
+        
         // datos para enviar
         var datosComprobar = new FormData();
         datosComprobar.append('usuario', datosFormulario['usuario']);
@@ -60,9 +63,8 @@ var LoginView = Backbone.View.extend({
     },
     
     autenticar_svr: function (datosAcceso) {
-        // limpiamos el localStorage
-        window.localStorage.clear();
         
+                
         $.ajax({
             url: 'http://test.mepwebs.com/app_authuser',
             //url: 'http://localhost/fuerteagenda_cms/app_authuser',
@@ -86,8 +88,10 @@ var LoginView = Backbone.View.extend({
                     // guardamos en localStorage
                     window.localStorage.setItem('id_user', data.id_user);
                     window.localStorage.setItem('valid', data.valid);
-                    window.localStorage.setItem('usuario', data.email);
-                    window.localStorage.setItem('passwd', data.passwd);
+                    
+                    console.log("window.localStorage");
+                    console.log(window.localStorage);
+                    
                     // redireccionamos a inicio
                     Backbone.history.navigate('inicio', {trigger: true});
                 } else {
@@ -102,6 +106,8 @@ var LoginView = Backbone.View.extend({
                     if(data.id_user!=0){
                         alert("El usuario está caducado, póngase en contacto con nosotros para renovar su usuario en info@pelladeocio.com");
                     } else {
+                        // limpiamos el localStorage
+                        window.localStorage.clear();
                         alert("Usuario o contraseña incorrecta");
                     }
                 }

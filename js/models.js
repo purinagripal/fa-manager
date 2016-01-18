@@ -61,8 +61,14 @@ var EventoCollection = Backbone.Collection.extend({
 var Eventor = Backbone.Model.extend({
     idAttribute: 'id_user',
     
-    //urlRoot: "http://localhost/fuerteagenda_cms/appusers"    
-    urlRoot: "http://test.mepwebs.com/appusers"    
+    //urlRoot: "http://localhost/fuerteagenda_cms/appusers", 
+    urlRoot: "http://test.mepwebs.com/appusers", 
+    
+    validate: function (attrs, options) {
+        if (attrs.contrasena_1 != attrs.contrasena_2) {
+          return "La repetión de la contraseña no coincide con la contraseña";
+        }
+    }
     
 });
 
