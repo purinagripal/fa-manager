@@ -168,7 +168,7 @@ a.menu_salir {
 
 /* formulario evento */
 .formulario {margin-bottom: 1.5em;}
-.formulario textarea, .formulario input, .formulario select {width: 100%; padding:1%; border:1px solid #ccc; margin-bottom: 1.2em; border-radius: 5px; outline: none;}
+.formulario textarea, .formulario input, .formulario select {color: #000; width: 100%; padding:3px; border:1px solid #ccc; margin-bottom: 1.2em; border-radius: 5px; outline: none;}
 .formulario input[type=file] {border: none;}
 .formulario button {border:none; width: 100%; padding: 0.3em 0; font-size: 1.5em;}
 /* fin formulario evento  */
@@ -187,7 +187,7 @@ a.menu_salir {
     margin-top: 30px;
     text-align: center;
 }
-#login-formulario {height: 380px;}
+#login-formulario {height: 450px;}
 /* fin - login */
 
 /* cargando */

@@ -69,7 +69,7 @@ var HomeView = Backbone.View.extend({
                 ciudad_txt = 'P. Lajas';
                 break;
             default:
-                ciudad_txt = 'Ciudad';
+                ciudad_txt = 'Lugar';
         }
         this.$('#dropdownMenuCiudad').html(ciudad_txt+' <span class="caret"></span>');
         

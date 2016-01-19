@@ -26,6 +26,8 @@ var EditEventoView = Backbone.View.extend({
         window.mapOptions = { 
             zoom: 17, 
             center: myLatlng,
+            streetViewControl: false,
+            styles: [{ featureType: "poi", elementType: "labels", stylers: [{ visibility: "off" }]}],
             draggable: true
         }; 
         window.map = new google.maps.Map(div_canvas, window.mapOptions);
