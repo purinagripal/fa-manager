@@ -33,7 +33,8 @@ var NuevoEventoView = Backbone.View.extend({
         var myLatlng = new google.maps.LatLng(datosUser.lat, datosUser.long); 
         window.mapOptions = { 
             zoom: 17, 
-            center: myLatlng
+            center: myLatlng,
+            draggable: true
         }; 
         window.map = new google.maps.Map(div_canvas, window.mapOptions);
         window.marker = new google.maps.Marker({ 
@@ -80,10 +81,11 @@ var NuevoEventoView = Backbone.View.extend({
         "click #boton_guardar": "enviar_formulario",
         "submit #addEventoForm": "enviar_formulario",
         
-        "click .link_locales": "ver_locales",
-        "click .link_eventos": "volver_inicio",
         "click .boton_inicio": "volver_inicio",
         "click .boton_atras": "volver_atras",
+        "click .menu_perfil": "editar_perfil",
+        "click .menu_eventos": "volver_inicio",
+        "click .menu_sesion": "cerrar_sesion",
         "click .menu_salir": "salir"
     },
     
@@ -314,6 +316,21 @@ var NuevoEventoView = Backbone.View.extend({
         //Backbone.history.history.back();
         // es lo mismo que:
         //window.history.back();
+    },
+    
+    editar_perfil: function (event) {
+        // añade entrada al historial
+        window.historial.push('perfiledit');
+        // redirecciona
+        Backbone.history.navigate('perfiledit', {trigger: true});
+    },
+    
+    cerrar_sesion: function (event) {
+        // limpiamos el localStorage
+        window.localStorage.clear();
+        // redireccionamos a login
+        window.historial = ["inicio"];
+        Backbone.history.navigate('', {trigger: true});
     },
 
     salir: function (event) {

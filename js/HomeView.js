@@ -63,10 +63,10 @@ var HomeView = Backbone.View.extend({
                 ciudad_txt = 'Tindaya';
                 break;
             case '6':
-                ciudad_txt = 'Puerto del Rosario';
+                ciudad_txt = 'Puerto';
                 break;
             case '7':
-                ciudad_txt = 'Puerto Lajas';
+                ciudad_txt = 'P. Lajas';
                 break;
             default:
                 ciudad_txt = 'Ciudad';

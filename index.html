@@ -37,7 +37,6 @@
 
         </form>	
     </div>
-    
 </script>
     
 <script id="home-tpl" type="text/template">
@@ -61,7 +60,7 @@
         </div>
         <div class="head_inf">
         
-            <a class="boton_add pull-left"><i class="fa fa-plus-circle"></i> Añadir evento</a>
+            <a class="boton_add pull-left"><i class="fa fa-plus-circle"></i> Evento</a>
             
             <div class="dropdown selec_drop pull-right">
                 <a class="dropdown-toggle" id="dropdownMenuCateg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -131,9 +130,10 @@
                     <i class="fa fa-bars"></i>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuMain">
-                    <li><a class="link_locales" >Locales</a></li>
-                    <li><a class="link_eventos" >Eventos</a></li>
+                    <li><a class="menu_perfil" >Perfil</a></li>
+                    <li><a class="menu_eventos" >Eventos</a></li>
                     <li role="separator" class="divider"></li>
+                    <li><a class="menu_sesion" >Cerrar sesión</a></li>
                     <li><a class="menu_salir">Salir</a></li>
                 </ul>
             </div>
@@ -239,9 +239,10 @@
                     <i class="fa fa-bars"></i>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuMain">
-                    <li><a class="link_locales" >Locales</a></li>
-                    <li><a class="link_eventos" >Eventos</a></li>
+                    <li><a class="menu_perfil" >Perfil</a></li>
+                    <li><a class="menu_eventos" >Eventos</a></li>
                     <li role="separator" class="divider"></li>
+                    <li><a class="menu_sesion" >Cerrar sesión</a></li>
                     <li><a class="menu_salir">Salir</a></li>
                 </ul>
             </div>
@@ -348,9 +349,10 @@
                     <i class="fa fa-bars"></i>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuMain">
-                    <li><a class="link_locales" >Locales</a></li>
-                    <li><a class="link_eventos" >Eventos</a></li>
+                    <li><a class="menu_perfil" >Perfil</a></li>
+                    <li><a class="menu_eventos" >Eventos</a></li>
                     <li role="separator" class="divider"></li>
+                    <li><a class="menu_sesion" >Cerrar sesión</a></li>
                     <li><a class="menu_salir">Salir</a></li>
                 </ul>
             </div>
@@ -367,6 +369,11 @@
     </div>
     
     <div id="form_addevento" class="container wrapper-absolute-50 evento-detalle">
+        <div class="row cuadro">
+            <div class="col-xs-12">
+                <h4>Perfil de Eventor</h4>
+            </div>
+        </div>
         <div class="row cuadro">
             <form id="imageForm" name="imageForm" class="formulario" enctype="multipart/form-data" >
                 <div class="col-xs-12">

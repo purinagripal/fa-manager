@@ -188,7 +188,8 @@
             
             // para que el mapa se vea más de una vez
             google.maps.event.trigger(window.map, 'resize');
-            window.map.setCenter(window.mapOptions.center);
+            //window.map.setCenter(window.mapOptions.center);
+            window.map.setOptions(window.mapOptions);
         }
         
         

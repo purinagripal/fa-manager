@@ -9,7 +9,7 @@ h4,h5,h6{ font-family: 'Unica One',Arial,Helvetica;color: #fff;}
 
 h3{font-size: 1.55em; margin-top: 1.56em; margin-bottom: 1.25em; color: #fff;}
 h3 span{font-size: 1.5em;}
-h4{font-size: 1.5em; margin-bottom:1.25em; line-height: 1.6;}
+h4{font-size: 1.5em; margin-bottom:1em; line-height: 1.6;}
 h5{font-size: 1.4em;}
 
 small{color: #777;font-size: 0.8em;}
@@ -140,7 +140,10 @@ a.menu_salir {
 .selec_drop {
     display: inline;
     margin: 3px;
-    margin-left: 25px;
+    margin-left: 15px;
+}
+.boton_add {
+    margin: 3px;
 }
 
 .dropdown-menu {
@@ -177,13 +180,14 @@ a.menu_salir {
     text-align: center;
 }
 .login-header h1 {
-    font-size: 28px;
+    font-size: 22px;
     margin-top: 10px;
 }
 #login-access {
     margin-top: 30px;
     text-align: center;
 }
+#login-formulario {height: 380px;}
 /* fin - login */
 
 /* cargando */
@@ -317,7 +321,7 @@ fieldset[disabled] .btn-pella.active {
 /* evento-detalle --- en EVENTO */
 .evento-detalle .cuadro {background-color: #222; }
 .evento-detalle .cuadro img {margin-top: 10px; margin-bottom: 1em;}
-.evento-detalle .cuadro h4 {color: #f2ab00; font-size: 2em; margin-bottom: 0.5em;}
+.evento-detalle .cuadro h4 {color: #f2ab00; font-size: 2em; margin-bottom: 5px;}
 .evento-detalle .cuadro p {margin: 0.6em 0; font-size: 1.12em; line-height: 1; }
 .evento-detalle .cuadro .datos-evento p {text-align: right;}
 .evento-detalle .cuadro .descr-evento { margin: 1.2em 0; text-align: justify; font-size: 0.9em;}
