@@ -238,6 +238,10 @@ a.menu_salir {
     height:200px;
     margin-bottom: 15px;
 }
+/* ocultar enlaces inferiores mapa */
+a[href^="http://maps.google.com/maps"]{display:none !important}
+a[href^="https://maps.google.com/maps"]{display:none !important}
+.gm-style-cc { display:none; }
 
 
 .btn-pella {
