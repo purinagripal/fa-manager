@@ -26,7 +26,7 @@ var EventoCollection = Backbone.Collection.extend({
     //url: "http://localhost/fuerteagenda_cms/appeventos",
     
     // desde el movil sí debe funcionar en servidor
-    url: "http://test.mepwebs.com/appeventos",
+    url: "http://pelladeocio.com/appeventos",
     
     comparator: 'date',
     
@@ -62,7 +62,7 @@ var Eventor = Backbone.Model.extend({
     idAttribute: 'id_user',
     
     //urlRoot: "http://localhost/fuerteagenda_cms/appusers", 
-    urlRoot: "http://test.mepwebs.com/appusers", 
+    urlRoot: "http://pelladeocio.com/appusers", 
     
     validate: function (attrs, options) {
         if (attrs.contrasena_1 != attrs.contrasena_2) {

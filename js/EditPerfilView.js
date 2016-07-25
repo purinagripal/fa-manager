@@ -171,7 +171,7 @@ var EditPerfilView = Backbone.View.extend({
                 
 
                 $.ajax({
-                    url: 'http://test.mepwebs.com/app_upload',
+                    url: 'http://pelladeocio.com/app_upload',
                     //url: 'http://localhost/fuerteagenda_cms/app_upload',
                     data: data,
                     cache: false,
@@ -190,7 +190,7 @@ var EditPerfilView = Backbone.View.extend({
     
                         // cambiamos la imagen q se ve
                         //$('#evento-img').attr('src', 'http://localhost/fuerteagenda_cms/uploads/medias/'+data.file);
-                        //$('#evento-img').attr('src', 'http://test.mepwebs.com/uploads/medias/'+data.file);
+                        //$('#evento-img').attr('src', 'http://pelladeocio.com/uploads/medias/'+data.file);
     
                         // cambiamos el input image para q se guarde en bbdd con el evento
                         $("#image").val(data.file);

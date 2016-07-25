@@ -1,8 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.mepwebs.gestorpelladeocio" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>Gestor Pella de Ocio</name>
+<widget xmlns="http://www.w3.org/ns/widgets" 
+        xmlns:gap="http://phonegap.com/ns/1.0" 
+        id="com.mepwebs.pelladeocio" 
+        version="1.0.0">
+    <name>Pella de Ocio</name>
     <description>
-        Gestor de eventos para Pella de Ocio
+        App Pella de Ocio
     </description>
     <author email="soporte@pelladeocio.com" href="http://pelladeocio.com">
         Mepwebs
@@ -13,7 +16,7 @@
     <!--    PREFERENCIAS    -->
     
     <!-- all platforms -->
-    <preference name="phonegap-version" value="cli-5.2.0" />
+    <preference name="phonegap-version" value="cli-6.1.0" />
     <preference name="orientation" value="default" />
     <preference name="fullscreen" value="false" />
     
@@ -25,22 +28,21 @@
     
     <!-- android only -->
     <preference name="android-build-tool" value="gradle" /> <!-- para push plugin -->
-    <preference name="android-minSdkVersion" value="10" />
+    <preference name="android-minSdkVersion" value="13" />
     <preference name="android-installLocation" value="auto" />
-        
-
     
-<!-- sin poner -->
+    
+<!--
     <preference name="permissions" value="none" />
     <preference name="webviewbounce" value="true" />
     <preference name="stay-in-webview" value="false" />
-    <preference name="ios-statusbarstyle" value="black-opaque" />
     <preference name="disable-cursor" value="false" />
-<!-- sin poner -->
+-->
     
     
     
     <!--   PLUGINS   -->
+    
     
     <plugin name="cordova-plugin-console" spec="1.0.3" />
     <plugin name="cordova-plugin-device" spec="1.1.2" />
@@ -63,18 +65,17 @@
     <plugin name="cordova-plugin-whitelist" spec="1.2.2" source="npm" />
         <allow-navigation href="*" />
         <access origin="*" />
-       
+       <!--  Permitir whatsapp 
+        <allow-intent href="whatsapp:*" />
+        <access origin="whatsapp:*" launch-external="yes" />   -->
     
-    <!-- DatePicker -->
-<!--    <gap:plugin name="com.sharinglabs.cordova.plugin.datepicker" />-->
-    <plugin name="cordova-plugin-datepicker" />
+    <!--    Compartir en RRSS   -->
+    <plugin name="cordova-plugin-x-socialsharing" spec="5.1.1" source="npm" />
     
-    <!-- File Transfer - subir imagenes -->
-<!--    <plugin name="org.apache.cordova.file-transfer" spec="0.5.0" source="pgb" />-->
-<!--    <plugin name="cordova-plugin-file-transfer" />-->
-    
-    
-    
+    <!--    Notificaciones PUSH   -->
+    <plugin name="phonegap-plugin-push" spec="1.7.4" source="npm">        
+        <param name="SENDER_ID" value="41817165383" />
+    </plugin>
     
     
     <!-- especificas plataformas -->
@@ -125,4 +126,5 @@
     
     <platform name="winphone" />
     <platform name="wp8" />
+    
 </widget>

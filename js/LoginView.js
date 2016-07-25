@@ -66,7 +66,7 @@ var LoginView = Backbone.View.extend({
         
                 
         $.ajax({
-            url: 'http://test.mepwebs.com/app_authuser',
+            url: 'http://pelladeocio.com/app_authuser',
             //url: 'http://localhost/fuerteagenda_cms/app_authuser',
             data: datosAcceso,
             cache: false,
