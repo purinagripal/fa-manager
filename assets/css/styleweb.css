@@ -171,6 +171,7 @@ a.menu_salir {
 .formulario textarea, .formulario input, .formulario select {color: #000; width: 100%; padding:3px; border:1px solid #ccc; margin-bottom: 1.2em; border-radius: 5px; outline: none;}
 .formulario input[type=file] {border: none;}
 .formulario button {border:none; width: 100%; padding: 0.3em 0; font-size: 1.5em;}
+.formulario input.btn-pella { padding: 1em; color: #fff; border: none; font-weight: 700; margin-top: 2em; }
 /* fin formulario evento  */
 
 /* login */

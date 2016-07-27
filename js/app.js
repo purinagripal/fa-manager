@@ -232,11 +232,13 @@
         // Now safe to use device APIs
         document.addEventListener("backbutton", onBackKeyDown, false);
         
+        StatusBar.hide();
+        
         // ocultar pantalla presentacion 
         setTimeout(function() {
             navigator.splashscreen.hide();
             console.log( 'esconde splashscreen' );
-        }, 2000);
+        }, 1000);
         
     };
     

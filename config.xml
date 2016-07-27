@@ -31,11 +31,13 @@
 
     
 <!-- sin poner -->
+<!--
     <preference name="permissions" value="none" />
     <preference name="webviewbounce" value="true" />
     <preference name="stay-in-webview" value="false" />
     <preference name="ios-statusbarstyle" value="black-opaque" />
     <preference name="disable-cursor" value="false" />
+-->
 <!-- sin poner -->
     
     
@@ -49,7 +51,7 @@
     <!--   SplashScreen   -->
     <plugin name="cordova-plugin-splashscreen" source="npm" spec="3.2.2" />
     <preference name="SplashScreen" value="splash" />
-    <preference name="AutoHideSplashScreen" value="true" />
+    <preference name="AutoHideSplashScreen" value="false" />
     <preference name="SplashScreenDelay" value="2000" />
     <preference name="ShowSplashScreenSpinner" value="false"/>
     <splash src="splash.png" />
@@ -67,7 +69,7 @@
     
     <!-- DatePicker -->
 <!--    <gap:plugin name="com.sharinglabs.cordova.plugin.datepicker" />-->
-    <plugin name="cordova-plugin-datepicker" />
+    <plugin name="cordova-plugin-datepicker" spec="0.9.3" source="npm" />
     
     <!-- File Transfer - subir imagenes -->
 <!--    <plugin name="org.apache.cordova.file-transfer" spec="0.5.0" source="pgb" />-->
