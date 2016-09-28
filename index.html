@@ -199,8 +199,8 @@
                 <div class="clearfix"></div>
                 <div class="col-xs-12">
                     
-                    Título: <input type="text" name="title_es" tabindex=4 value="" />
-                    Descripción: <textarea name="descripcion_es" rows="2" placeholder="Message" tabindex=5 ></textarea>
+                    Título: <input type="text" name="title_es" tabindex=4 value="" maxlength="30"/>
+                    Descripción: <textarea name="descripcion_es" rows="8" placeholder="Message" tabindex=5 ></textarea>
                     Dirección: <input type="text" name="direccion" tabindex=6 value="{{User.direccion}}" />
                     <select name="id_ciudad" class="form-control" tabindex=7 >
                             <option value="2" {{#equal User.id_ciudad 2}}selected{{/equal}}>Corralejo</option>
@@ -309,8 +309,8 @@
                 <div class="clearfix"></div>
                 <div class="col-xs-12">
                     <input type="hidden" name="id_content_es" id="id_content_es" value="{{id_evecontent}}" />
-                    Título: <input type="text" name="title_es" tabindex=4 value="{{title}}" />
-                    Descripción: <textarea name="descripcion_es" rows="2" placeholder="Message" tabindex=5 >{{descripcion}}</textarea>
+                    Título: <input type="text" name="title_es" tabindex=4 value="{{title}}" maxlength="30" />
+                    Descripción: <textarea name="descripcion_es" rows="8" placeholder="Message" tabindex=5 >{{descripcion}}</textarea>
                     Dirección: <input type="text" name="direccion" tabindex=6 value="{{direccion}}" />
                     <select name="id_ciudad" class="form-control" tabindex=7 >
                             <option value="2" {{#equal id_ciudad 2}}selected{{/equal}}>Corralejo</option>
@@ -405,8 +405,8 @@
                 <input type="hidden" name="image" id="image" value="{{image}}" />
                 <div class="col-xs-12">
                     <input type="hidden" name="id_content_es" id="id_content_es" value="{{id_evecontent}}" />
-                    Nombre: <input type="text" name="first_name" tabindex=1 value="{{first_name}}" />
-                    Descripción: <textarea name="resume" rows="2" placeholder="Descripción" tabindex=2 >{{resume}}</textarea>
+                    Nombre: <input type="text" name="first_name" tabindex=1 value="{{first_name}}" maxlength="30" />
+                    Descripción: <textarea name="resume" rows="6" placeholder="Descripción" tabindex=2 >{{resume}}</textarea>
                     Dirección: <input type="text" name="direccion" tabindex=3 value="{{direccion}}" />
                     <select name="id_ciudad" class="form-control" tabindex=4 >
                             <option value="2" {{#equal id_ciudad 2}}selected{{/equal}}>Corralejo</option>

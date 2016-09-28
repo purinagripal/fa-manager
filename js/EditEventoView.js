@@ -283,8 +283,8 @@ var EditEventoView = Backbone.View.extend({
                     console.log(model);
                     console.log(response);
 
-                    // eliminamos el evento de la colección ya que no se ha guardado en server
-                    coleccionEventos.remove(evento);
+                    // no eliminamos el evento de la colección, ya existia
+                    //coleccionEventos.remove(evento);
                 },
                 wait: true
             });
