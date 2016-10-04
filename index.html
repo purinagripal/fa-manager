@@ -216,6 +216,7 @@
                     <input type="hidden" name="long" id="long" value="{{User.long}}" />
                     Horario (info extra): <input type="text" name="horario_es" tabindex=8 />
                     Precio: <input type="text" name="precio_es" tabindex=9 />
+                    Web (sin http://): <input type="text" name="web_link" tabindex=10 />
                     <!--<input type="submit" value="Submit" tabindex=10 ></input>-->
                     <a id="boton_guardar" class="btn btn-pella btn-lg btn-block" >Guardar evento</a>
                 </div>
@@ -326,6 +327,7 @@
                     <input type="hidden" name="long" id="long" value="{{long}}" />
                     Horario (info extra): <input type="text" name="horario_es" tabindex=8 value="{{horario}}" />
                     Precio: <input type="text" name="precio_es" tabindex=9 value="{{precio}}" />
+                    Web (sin http://): <input type="text" name="web_link" tabindex=10 value="{{web_link}}" />
                     <!--<input type="submit" value="Submit" tabindex=10 ></input>-->
                     <a id="boton_guardar" class="btn btn-pella btn-lg btn-block" >Guardar evento</a>
                 </div>
@@ -408,7 +410,8 @@
                     Nombre: <input type="text" name="first_name" tabindex=1 value="{{first_name}}" maxlength="30" />
                     Descripción: <textarea name="resume" rows="6" placeholder="Descripción" tabindex=2 >{{resume}}</textarea>
                     Dirección: <input type="text" name="direccion" tabindex=3 value="{{direccion}}" />
-                    <select name="id_ciudad" class="form-control" tabindex=4 >
+                    Web (sin http://): <input type="text" name="web_link" tabindex=4 value="{{web_link}}" />
+                    <select name="id_ciudad" class="form-control" tabindex=5 >
                             <option value="2" {{#equal id_ciudad 2}}selected{{/equal}}>Corralejo</option>
                             <option value="3" {{#equal id_ciudad 3}}selected{{/equal}}>Cotillo</option>
                             <option value="4" {{#equal id_ciudad 4}}selected{{/equal}}>La Oliva</option>
@@ -420,9 +423,9 @@
                     <div id="mapa-evento"></div>
                     <input type="hidden" name="lat" id="lat" value="{{lat}}" />
                     <input type="hidden" name="long" id="long" value="{{long}}" />
-                    Email: <input type="email" name="email" tabindex=5 value="{{email}}" />
-                    Cambiar contraseña: <input type="password" name="contrasena_1" tabindex=6 />
-                    Repetir contraseña: <input type="password" name="contrasena_2" tabindex=6 />
+                    Email: <input type="email" name="email" tabindex=6 value="{{email}}" />
+                    Cambiar contraseña: <input type="password" name="contrasena_1" tabindex=7 />
+                    Repetir contraseña: <input type="password" name="contrasena_2" tabindex=7 />
                     <!--<input type="submit" value="Submit" tabindex=10 ></input>-->
                     <a id="boton_guardar" class="btn btn-pella btn-lg btn-block" >Guardar perfil</a>
                 </div>

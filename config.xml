@@ -54,6 +54,7 @@
     <plugin name="cordova-plugin-device" spec="1.1.2" />
     <plugin name="cordova-plugin-dialogs" spec="1.2.1" />
     
+    
     <!--   SplashScreen   -->
     <plugin name="cordova-plugin-splashscreen" source="npm" spec="3.2.2" />
     <preference name="SplashScreen" value="splash" />
