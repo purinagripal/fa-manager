@@ -19,6 +19,9 @@ var EditEventoView = Backbone.View.extend({
         console.log("datosModelo");
         console.log(datosModelo);
         
+        // vincula la plantilla "undia" al div que lo contendrá "fechas-form"
+        $('#fechas-form', this.el).append(new FechasUndiaView({model: primerModelo}).render().el);
+        
         
         var div_canvas = $('#mapa-evento', this.el)[0];
         
@@ -75,6 +78,9 @@ var EditEventoView = Backbone.View.extend({
         "click #boton_guardar": "enviar_formulario",
         "submit #editEventoForm": "enviar_formulario",
         
+        "click #boton_variosdias": "plantilla_variosdias",
+        "click #boton_undia": "plantilla_undia",
+        
         "click .boton_inicio": "volver_inicio",
         "click .boton_atras": "volver_atras",
         "click .menu_perfil": "editar_perfil",
@@ -83,6 +89,23 @@ var EditEventoView = Backbone.View.extend({
         "click .menu_salir": "salir"
     },
     
+    plantilla_variosdias: function (event) {
+        // resetea el div
+        $('#fechas-form', this.el).html('');
+
+        // y vincula la plantilla "variosdias" al div que lo contendrá "fechas-form"
+        $('#fechas-form', this.el).append(new FechasVariosdiasView({model: this.model}).render().el);
+        
+    },
+    
+    plantilla_undia: function (event) {
+        // resetea el div
+        $('#fechas-form', this.el).html('');
+
+        // y vincula la plantilla "variosdias" al div que lo contendrá "fechas-form"
+        $('#fechas-form', this.el).append(new FechasUndiaView({model: this.model}).render().el);
+        
+    },
     
     subir_imagen: function (event) {
         

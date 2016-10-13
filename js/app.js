@@ -171,6 +171,7 @@
             
             // coge el evento de la coleccion del HOME
             this.eventoEdit = this.eventosUser.get(id_evento);
+            //console.log(this.eventoEdit);
             
             // vinculamos la coleccion this.eventosUser a la vista
             slider.slidePage(new EditEventoView({collection: this.eventosUser, model: this.eventoEdit}).render().$el);

@@ -1,3 +1,33 @@
+var FechasUndiaView = Backbone.View.extend({
+    
+    template: Handlebars.compile($("#undia-tpl").html()),
+    
+    render:function () {
+        if (typeof this.model !== 'undefined') {
+            $(this.el).html(this.template(this.model.toJSON()));
+        } else {
+            $(this.el).html(this.template());
+        }
+        return this; 
+    }
+});
+
+var FechasVariosdiasView = Backbone.View.extend({
+    
+    template: Handlebars.compile($("#variosdias-tpl").html()),
+    
+    render:function () {
+        if (typeof this.model !== 'undefined') {
+            $(this.el).html(this.template(this.model.toJSON()));
+        } else {
+            $(this.el).html(this.template());
+        }
+        return this; 
+    }
+
+});
+
+
 var NuevoEventoView = Backbone.View.extend({
     
     initialize: function (options, user_model) {
@@ -12,6 +42,9 @@ var NuevoEventoView = Backbone.View.extend({
         
         // pasa los datos del User a la plantilla
         this.$el.html(this.template({User: this.userModel.toJSON()}));
+        
+        // vincula la plantilla "undia" al div que lo contendrá "fechas-form"
+        $('#fechas-form', this.el).append(new FechasUndiaView().render().el);
         
         console.log("auth user = " + window.localStorage.getItem('id_user'));
         console.log("coleccion en nuevo evento: ");
@@ -83,12 +116,34 @@ var NuevoEventoView = Backbone.View.extend({
         "click #boton_guardar": "enviar_formulario",
         "submit #addEventoForm": "enviar_formulario",
         
+        "click #boton_variosdias": "plantilla_variosdias",
+        "click #boton_undia": "plantilla_undia",
+        
         "click .boton_inicio": "volver_inicio",
         "click .boton_atras": "volver_atras",
         "click .menu_perfil": "editar_perfil",
         "click .menu_eventos": "volver_inicio",
         "click .menu_sesion": "cerrar_sesion",
         "click .menu_salir": "salir"
+    },
+    
+    
+    plantilla_variosdias: function (event) {
+        // resetea el div
+        $('#fechas-form', this.el).html('');
+
+        // y vincula la plantilla "variosdias" al div que lo contendrá "fechas-form"
+        $('#fechas-form', this.el).append(new FechasVariosdiasView().render().el);
+        
+    },
+    
+    plantilla_undia: function (event) {
+        // resetea el div
+        $('#fechas-form', this.el).html('');
+
+        // y vincula la plantilla "variosdias" al div que lo contendrá "fechas-form"
+        $('#fechas-form', this.el).append(new FechasUndiaView().render().el);
+        
     },
     
     
