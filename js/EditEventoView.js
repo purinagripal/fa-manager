@@ -19,8 +19,14 @@ var EditEventoView = Backbone.View.extend({
         console.log("datosModelo");
         console.log(datosModelo);
         
-        // vincula la plantilla "undia" al div que lo contendrá "fechas-form"
-        $('#fechas-form', this.el).append(new FechasUndiaView({model: primerModelo}).render().el);
+        if (datosModelo.f_fin == null) {
+            // vincula la plantilla "undia" al div que lo contendrá "fechas-form"
+            $('#fechas-form', this.el).append(new FechasUndiaView({model: primerModelo}).render().el);
+        } else {
+            // vincula la plantilla "variosdias" al div que lo contendrá "fechas-form"
+            $('#fechas-form', this.el).append(new FechasVariosdiasView({model: primerModelo}).render().el);
+        }
+        
         
         
         var div_canvas = $('#mapa-evento', this.el)[0];
