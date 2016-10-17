@@ -16,17 +16,19 @@ var Evento = Backbone.Model.extend({
         }
         
         // si existe f_fin
-        if (typeof attrs.f_fin !== 'undefined') {
-            if (attrs.f_fin == '') {
-              return "Introduzca la fecha de fin";
-            } else {
-                if (!validarFechaAMD(attrs.f_fin) && !validarFechaDMA(attrs.f_fin)) {
-                    // si falla para los dos formatos posibles
-                    return "Introduzca la fecha de fin en formato dd-mm-aaaa";
-                }    
+        if( attrs.f_fin !== null ) {
+            if (typeof attrs.f_fin !== 'undefined') {
+                if (attrs.f_fin == '') {
+                  return "Introduzca la fecha de fin";
+                } else {
+                    if (!validarFechaAMD(attrs.f_fin) && !validarFechaDMA(attrs.f_fin)) {
+                        // si falla para los dos formatos posibles
+                        return "Introduzca la fecha de fin en formato dd-mm-aaaa";
+                    }    
+                }
             }
         }
-        
+                
         if (attrs.title_es == '') {
           return "Introduzca el título del evento";
         }
