@@ -70,23 +70,22 @@
                     <li><a class="filt_categ" data-id="1">Música</a></li>
                     <li><a class="filt_categ" data-id="2">Espectáculos</a></li>
                     <li><a class="filt_categ" data-id="3">Talleres y cursos</a></li>
-                    <li><a class="filt_categ" data-id="4">Charlas y encuentros</a></li>
+                    <li><a class="filt_categ" data-id="4">Charlas y expos</a></li>
                     <li><a class="filt_categ" data-id="5">Deportes</a></li>
                     <li><a class="filt_categ" data-id="6">Para niños</a></li>
                     <li><a class="filt_categ" data-id="0">Todas</a></li>
                 </ul>
             </div>
             <div class="dropdown selec_drop pull-right">
-              <a class="dropdown-toggle" id="dropdownMenuCiudad" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">                Lugar <span class="caret"></span>
+              <a class="dropdown-toggle" id="dropdownMenuCiudad" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">                Municipio <span class="caret"></span>
               </a>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuCiudad">
-                <li><a class="filt_zona" data-id="2">Corralejo</a></li>
-                <li><a class="filt_zona" data-id="3">Cotillo</a></li>
-                <li><a class="filt_zona" data-id="4">La Oliva</a></li>
-                <li><a class="filt_zona" data-id="1">Lajares</a></li>
+                <li><a class="filt_zona" data-id="1">Antigua</a></li>
+                <li><a class="filt_zona" data-id="2">Betancuria</a></li>
+                <li><a class="filt_zona" data-id="3">La Oliva</a></li>
+                <li><a class="filt_zona" data-id="4">Pájara</a></li>
                 <li><a class="filt_zona" data-id="6">Puerto del Rosario</a></li>
-                <li><a class="filt_zona" data-id="7">Puerto Lajas</a></li>
-                <li><a class="filt_zona" data-id="5">Tindaya</a></li>
+                <li><a class="filt_zona" data-id="5">Tuineje</a></li>
                 <li><a class="filt_zona" data-id="0">Todas</a></li>
               </ul>
             </div>
@@ -184,7 +183,7 @@
                         <option value="1" >Música</option>
                         <option value="2" >Espectáculos</option>
                         <option value="3" >Talleres y cursos</option>
-                        <option value="4" >Charlas y encuentros</option>
+                        <option value="4" >Charlas y expos</option>
                         <option value="5" >Deportes</option>
                         <option value="6" >Para niños</option>
                     </select>
@@ -201,14 +200,14 @@
                     Título: <input type="text" name="title_es" tabindex=4 value="" maxlength="30"/>
                     Descripción: <textarea name="descripcion_es" rows="8" placeholder="Descripción del evento" tabindex=5 ></textarea>
                     Dirección: <input type="text" name="direccion" tabindex=6 value="{{User.direccion}}" />
-                    <select name="id_ciudad" class="form-control" tabindex=7 >
-                            <option value="2" {{#equal User.id_ciudad 2}}selected{{/equal}}>Corralejo</option>
-                            <option value="3" {{#equal User.id_ciudad 3}}selected{{/equal}}>Cotillo</option>
-                            <option value="4" {{#equal User.id_ciudad 4}}selected{{/equal}}>La Oliva</option>
-                            <option value="1" {{#equal User.id_ciudad 1}}selected{{/equal}}>Lajares</option>
-                            <option value="6" {{#equal User.id_ciudad 6}}selected{{/equal}}>Puerto del Rosario</option>
-                            <option value="7" {{#equal User.id_ciudad 7}}selected{{/equal}}>Puerto Lajas</option>
-                            <option value="5" {{#equal User.id_ciudad 5}}selected{{/equal}}>Tindaya</option>
+                    Localidad: <input type="text" name="localidad" tabindex=7 value="{{User.localidad}}" />
+                    <select name="id_ciudad" class="form-control" tabindex=8 >
+                        <option value="1" {{#equal User.id_ciudad 1}}selected{{/equal}}>Antigua</option>                            
+                        <option value="2" {{#equal User.id_ciudad 2}}selected{{/equal}}>Betancuria</option>                            
+                        <option value="3" {{#equal User.id_ciudad 3}}selected{{/equal}}>La Oliva</option>
+                        <option value="4" {{#equal User.id_ciudad 4}}selected{{/equal}}>Pájara</option>
+                        <option value="6" {{#equal User.id_ciudad 6}}selected{{/equal}}>Puerto del Rosario</option>
+                        <option value="5" {{#equal User.id_ciudad 5}}selected{{/equal}}>Tuineje</option>
                     </select>
                     <div id="mapa-evento"></div>
                     <input type="hidden" name="lat" id="lat" value="{{User.lat}}" />
@@ -326,7 +325,7 @@
                         <option value="1" {{#equal id_categoria 1}}selected{{/equal}}>Música</option>
                         <option value="2" {{#equal id_categoria 2}}selected{{/equal}}>Espectáculos</option>
                         <option value="3" {{#equal id_categoria 3}}selected{{/equal}}>Talleres y cursos</option>
-                        <option value="4" {{#equal id_categoria 4}}selected{{/equal}}>Charlas y encuentros</option>
+                        <option value="4" {{#equal id_categoria 4}}selected{{/equal}}>Charlas y expos</option>
                         <option value="5" {{#equal id_categoria 5}}selected{{/equal}}>Deportes</option>
                         <option value="6" {{#equal id_categoria 6}}selected{{/equal}}>Para niños</option>
                     </select>
@@ -344,14 +343,14 @@
                     Título: <input type="text" name="title_es" tabindex=4 value="{{title}}" maxlength="30" />
                     Descripción: <textarea name="descripcion_es" rows="8" placeholder="Message" tabindex=5 >{{descripcion}}</textarea>
                     Dirección: <input type="text" name="direccion" tabindex=6 value="{{direccion}}" />
-                    <select name="id_ciudad" class="form-control" tabindex=7 >
-                            <option value="2" {{#equal id_ciudad 2}}selected{{/equal}}>Corralejo</option>
-                            <option value="3" {{#equal id_ciudad 3}}selected{{/equal}}>Cotillo</option>
-                            <option value="4" {{#equal id_ciudad 4}}selected{{/equal}}>La Oliva</option>
-                            <option value="1" {{#equal id_ciudad 1}}selected{{/equal}}>Lajares</option>
-                            <option value="6" {{#equal id_ciudad 6}}selected{{/equal}}>Puerto del Rosario</option>
-                            <option value="7" {{#equal id_ciudad 7}}selected{{/equal}}>Puerto Lajas</option>
-                            <option value="5" {{#equal id_ciudad 5}}selected{{/equal}}>Tindaya</option>
+                    Localidad: <input type="text" name="localidad" tabindex=7 value="{{localidad}}" />
+                    <select name="id_ciudad" class="form-control" tabindex=8 >
+                        <option value="1" {{#equal id_ciudad 1}}selected{{/equal}}>Antigua</option>                            
+                        <option value="2" {{#equal id_ciudad 2}}selected{{/equal}}>Betancuria</option>                            
+                        <option value="3" {{#equal id_ciudad 3}}selected{{/equal}}>La Oliva</option>
+                        <option value="4" {{#equal id_ciudad 4}}selected{{/equal}}>Pájara</option>
+                        <option value="6" {{#equal id_ciudad 6}}selected{{/equal}}>Puerto del Rosario</option>
+                        <option value="5" {{#equal id_ciudad 5}}selected{{/equal}}>Tuineje</option>
                     </select>
                     
                     <div id="mapa-evento"></div>
